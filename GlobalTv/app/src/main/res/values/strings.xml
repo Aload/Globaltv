@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">GlobalTv</string>
+    <string name="splash_name">特别声明：\n 本应用只为提供技术参考。请各位自觉维护人家全\n民TV公司的合法权益！谢谢合作!</string>
+    <!--首页-->
+    <string name="tab_01">推荐</string>
+    <string name="tab_02">栏目</string>
+    <string name="tab_03">直播</string>
+    <string name="tab_04">我的</string>
+</resources>

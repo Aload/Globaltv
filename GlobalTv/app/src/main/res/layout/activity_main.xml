@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.autism.globaltv.home.HomeAct">
+
+    <FrameLayout
+        android:id="@+id/fl_contain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RadioGroup
+        android:id="@+id/rg_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/divider_line"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <RadioButton
+            android:id="@+id/rb_1"
+            style="@style/tabStyle"
+            android:drawableTop="@drawable/selector_btn_tabbar_home"
+            android:text="@string/tab_01" />
+
+        <RadioButton
+            android:id="@+id/rb_2"
+            style="@style/tabStyle"
+            android:drawableTop="@drawable/selector_btn_tabbar_lanmu"
+            android:text="@string/tab_02" />
+
+        <RadioButton
+            android:id="@+id/rb_3"
+            style="@style/tabStyle"
+            android:drawableTop="@drawable/selector_btn_tabbar_zhibo"
+            android:text="@string/tab_03" />
+
+        <RadioButton
+            android:id="@+id/rb_4"
+            style="@style/tabStyle"
+            android:drawableTop="@drawable/selector_btn_tabbar_wode"
+            android:text="@string/tab_04" />
+    </RadioGroup>
+
+</RelativeLayout>
