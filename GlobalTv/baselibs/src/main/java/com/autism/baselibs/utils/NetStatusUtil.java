@@ -17,7 +17,6 @@ public class NetStatusUtil {
      */
     public static boolean isConnectToNet(Context context) {
         if (context == null) { //如果context为空则放弃判断
-            LogUtil.w("context is null.");
             return true;
         }
         ConnectivityManager cwjManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);

@@ -8,6 +8,7 @@ import java.util.List;
  */
 public class HomeEntity {
 
+
     private List<?> ad;
     private List<RoomBean> room;
 
@@ -33,7 +34,7 @@ public class HomeEntity {
          * icon :
          * id : 0
          * is_default : 1
-         * list : [{"anniversary":0,"avatar":"http://a.img.shouyintv.cn/J50l101-normal","beauty_cover":"","category_id":17,"category_name":"王者荣耀","category_slug":"wangzhe","check":true,"coin":42894,"create_at":"2017-04-01 12:48:44","default_image":"","fans":0,"first_play_at":"1970-01-01 08:00:00","follow":4059,"is_shield":false,"landscape":1,"last_end_at":"1970-01-01 08:00:00","last_play_at":"1970-01-01 08:00:00","last_thumb":"1547610222-1490976233-936.jpg","level":0,"like":0,"link":"http://www.quanmin.tv/14863838","love_cover":"","max_view":0,"nick":"小鱼","no":14863838,"play_count":0,"play_status":true,"play_true":0,"position":"外太空","recommend_image":"","screen":0,"starlight":42894,"status":2,"stream":"http://flv.quanmin.tv/live/1547610222.flv","thumb":"http://snap.quanmin.tv/1547610222-1491030054-938.jpg?imageView2/2/w/390/","title":"我要全区第一个上王者","uid":1547610222,"video":"http://thumb.quanmin.tv/1547610222.mp4?t=1491030000","view":"18825","weight":0},{"anniversary":0,"avatar":"http://a.img.shouyintv.cn/cwLx101-normal","beauty_cover":"","category_id":29,"category_name":"Showing","category_slug":"showing","check":true,"coin":77903,"create_at":"2017-04-01 13:41:04","default_image":"","fans":0,"first_play_at":"1970-01-01 08:00:00","follow":5802,"is_shield":false,"landscape":0,"last_end_at":"1970-01-01 08:00:00","last_play_at":"1970-01-01 08:00:00","last_thumb":"18574022-1490681011-179.jpg","level":0,"like":0,"link":"http://www.quanmin.tv/949455","love_cover":"","max_view":0,"nick":"🍬Christinelover_","no":949455,"play_count":0,"play_status":true,"play_true":0,"position":"北京市","recommend_image":"","screen":1,"starlight":77903,"status":2,"stream":"http://flv.quanmin.tv/live/18574022.flv","thumb":"http://a.img.shouyintv.cn/cwLx101-big","title":"格鲁吉亚day5","uid":18574022,"video":"http://thumb.quanmin.tv/18574022.mp4?t=1491030000","view":"5670","weight":0},{"anniversary":0,"avatar":"http://a.img.shouyintv.cn/a4Lx101-normal","beauty_cover":"","category_id":4,"category_name":"全民星秀","category_slug":"beauty","check":true,"coin":398567,"create_at":"2017-04-01 10:42:40","default_image":"","fans":0,"first_play_at":"1970-01-01 08:00:00","follow":32259,"is_shield":false,"landscape":1,"last_end_at":"1970-01-01 08:00:00","last_play_at":"1970-01-01 08:00:00","last_thumb":"8614104-1491012002-543.jpg","level":0,"like":0,"link":"http://www.quanmin.tv/8614104","love_cover":"http://a.img.shouyin.tv/dYVV101","max_view":0,"nick":"沈无情","no":8614104,"play_count":0,"play_status":true,"play_true":0,"position":"北京市","recommend_image":"","screen":0,"slug":"","starlight":398567,"status":2,"stream":"http://flv.quanmin.tv/live/8614104.flv","thumb":"http://snap.quanmin.tv/8614104-1491030003-582.jpg?imageView2/2/w/390/","title":"你女朋友在这。","uid":8614104,"video":"http://thumb.quanmin.tv/8614104.mp4?t=1491030000","view":"8642","weight":0},{"anniversary":0,"app_shuffling_image":"http://image.quanmin.tv/118add2628e3aba718d5a59a252f440bjpg","avatar":"http://image.quanmin.tv/avatar/2b11855e88ca4c31c2bf7900c5ea497d?imageView2/2/w/300/","beauty_cover":"","category_id":1,"category_name":"英雄联盟","category_slug":"lol","check":true,"coin":183367,"create_at":"2017-04-01 09:15:12","default_image":"","fans":0,"first_play_at":"1970-01-01 08:00:00","follow":31288,"is_shield":false,"landscape":1,"last_end_at":"1970-01-01 08:00:00","last_play_at":"1970-01-01 08:00:00","last_thumb":"654487-1490965022-765.jpg","level":0,"like":0,"link":"http://www.quanmin.tv/v/pandi","love_cover":"","max_view":0,"nick":"潘森之王","no":654487,"play_count":0,"play_status":true,"play_true":0,"position":"外太空","recommend_image":"http://image.quanmin.tv/90d22a15cb35ef7bfa7f2209ee1c56efjpg","screen":0,"slug":"pandi","starlight":183367,"status":2,"stream":"http://flv.quanmin.tv/live/654487_L3.flv","thumb":"http://snap.quanmin.tv/654487-1491030054-534.jpg?imageView2/2/w/390/","title":"来自吉林的潘森,闯荡电一.请指教~","uid":654487,"video":"http://thumb.quanmin.tv/654487.mp4?t=1491030000","video_quality":"3","view":"63023","weight":0},{"anniversary":0,"avatar":"http://a.img.shouyintv.cn/gAIv101-normal","beauty_cover":"","category_id":21,"category_name":"FIFA","category_slug":"fifa","check":true,"coin":8227,"create_at":"2017-04-01 09:55:00","default_image":"","fans":0,"first_play_at":"1970-01-01 08:00:00","follow":1133,"is_shield":false,"landscape":1,"last_end_at":"1970-01-01 08:00:00","last_play_at":"1970-01-01 08:00:00","last_thumb":"2950218-1491011582-66.jpg","level":0,"like":0,"link":"http://www.quanmin.tv/4993746","love_cover":"","max_view":0,"nick":"全民Tv丶凯哥","no":4993746,"play_count":0,"play_status":true,"play_true":0,"position":"外太空","recommend_image":"","screen":0,"starlight":8227,"status":2,"stream":"http://flv.quanmin.tv/live/2950218.flv","thumb":"http://snap.quanmin.tv/2950218-1491030003-464.jpg?imageView2/2/w/390/","title":"我来了兄弟们，今天首秀各种大卡！！！","uid":2950218,"video":"http://thumb.quanmin.tv/2950218.mp4?t=1491030000","view":"21970","weight":0},{"anniversary":0,"avatar":"http://a.img.shouyintv.cn/iA1w101-normal","beauty_cover":"","category_id":13,"category_name":"全民户外","category_slug":"huwai","check":true,"coin":121739,"create_at":"2017-04-01 11:57:32","default_image":"","fans":0,"first_play_at":"1970-01-01 08:00:00","follow":4456,"is_shield":false,"landscape":1,"last_end_at":"1970-01-01 08:00:00","last_play_at":"1970-01-01 08:00:00","last_thumb":"10153492-1490952600-634.jpg","level":0,"like":0,"link":"http://www.quanmin.tv/10153492","love_cover":"http://image.quanmin.tv/love/78efea5fba3942f1e7740aad48ff5ce0jpg","max_view":0,"nick":"大喵王","no":10153492,"play_count":0,"play_status":true,"play_true":0,"position":"外太空","recommend_image":"","screen":0,"slug":"","starlight":121739,"status":2,"stream":"http://flv.quanmin.tv/live/10153492.flv","thumb":"http://snap.quanmin.tv/10153492-1491030054-981.jpg?imageView2/2/w/390/","title":"春假喵北台湾之旅","uid":10153492,"video":"http://thumb.quanmin.tv/10153492.mp4?t=1491030000","video_quality":"","view":"8782","weight":0}]
+         * list : [{"anniversary":0,"avatar":"http://a.img.shouyintv.cn/J50l101-normal","beauty_cover":"","category_id":17,"category_name":"王者荣耀","category_slug":"wangzhe","check":true,"coin":44718,"create_at":"2017-04-05 10:44:38","default_image":"","fans":0,"first_play_at":"1970-01-01 08:00:00","follow":4086,"is_shield":false,"landscape":1,"last_end_at":"1970-01-01 08:00:00","last_play_at":"1970-01-01 08:00:00","last_thumb":"1547610222-1491360053-571.jpg","level":0,"like":0,"link":"http://www.quanmin.tv/14863838","love_cover":"","max_view":0,"nick":"小鱼","no":14863838,"play_count":0,"play_status":true,"play_true":0,"position":"外太空","recommend_image":"","screen":0,"starlight":44718,"status":2,"stream":"http://flv.quanmin.tv/live/1547610222.flv","thumb":"http://snap.quanmin.tv/1547610222-1491361733-787.jpg?imageView2/2/w/390/","title":"我要全区第一个上王者","uid":1547610222,"video":"http://thumb.quanmin.tv/1547610222.mp4?t=1491361500","view":"15946","weight":0},{"anniversary":0,"avatar":"http://a.img.shouyintv.cn/CtXw101-normal","beauty_cover":"","category_id":29,"category_name":"Showing","category_slug":"showing","check":true,"coin":1127,"create_at":"2017-04-05 09:19:44","default_image":"","fans":0,"first_play_at":"1970-01-01 08:00:00","follow":845,"is_shield":false,"landscape":0,"last_end_at":"1970-01-01 08:00:00","last_play_at":"1970-01-01 08:00:00","last_thumb":"1595648802-1491143884-713.jpg","level":0,"like":0,"link":"http://www.quanmin.tv/15475210","love_cover":"","max_view":0,"nick":"珊渣","no":15475210,"play_count":0,"play_status":true,"play_true":0,"position":"宁德市","recommend_image":"","screen":1,"starlight":1127,"status":2,"stream":"http://flv.quanmin.tv/live/1595648802.flv","thumb":"http://a.img.shouyintv.cn/CtXw101-big","title":"早上好","uid":1595648802,"video":"http://thumb.quanmin.tv/1595648802.mp4?t=1491361500","view":"989","weight":0},{"anniversary":0,"avatar":"http://a.img.shouyintv.cn/7W0y101-normal","beauty_cover":"","category_id":4,"category_name":"全民星秀","category_slug":"beauty","check":true,"coin":5007,"create_at":"2017-04-05 07:50:18","default_image":"","fans":0,"first_play_at":"1970-01-01 08:00:00","follow":230,"is_shield":false,"landscape":1,"last_end_at":"1970-01-01 08:00:00","last_play_at":"1970-01-01 08:00:00","last_thumb":"1580923242-1491349674-722.jpg","level":0,"like":0,"link":"http://www.quanmin.tv/15505161","love_cover":"","max_view":0,"nick":"Qn凌菲","no":15505161,"play_count":0,"play_status":true,"play_true":0,"position":"外太空","recommend_image":"","screen":0,"starlight":5007,"status":2,"stream":"http://flv.quanmin.tv/live/1580923242.flv","thumb":"http://snap.quanmin.tv/1580923242-1491361682-945.jpg?imageView2/2/w/390/","title":"Qn凌菲，宝宝求关注","uid":1580923242,"video":"http://thumb.quanmin.tv/1580923242.mp4?t=1491361500","view":"3278","weight":0},{"anniversary":0,"avatar":"http://image.quanmin.tv/avatar/35f675b8f9ee64f8c688eccc978eaed2?imageView2/2/w/300/","beauty_cover":"","category_id":5,"category_name":"单机主机","category_slug":"tvgame","check":true,"coin":3125,"create_at":"2017-04-05 08:29:47","default_image":"","fans":0,"first_play_at":"1970-01-01 08:00:00","follow":1851,"is_shield":false,"landscape":1,"last_end_at":"1970-01-01 08:00:00","last_play_at":"1970-01-01 08:00:00","last_thumb":"1815505-1491280683-591.jpg","level":0,"like":0,"link":"http://www.quanmin.tv/1815505","love_cover":"","max_view":0,"nick":"mdn17游戏吧","no":1815505,"play_count":0,"play_status":true,"play_true":0,"position":"","recommend_image":"","screen":0,"slug":"","starlight":3125,"status":2,"stream":"http://flv.quanmin.tv/live/1815505_L3.flv","thumb":"http://snap.quanmin.tv/1815505-1491361684-935.jpg?imageView2/2/w/390/","title":"东京迷城eX+","uid":1815505,"video":"http://thumb.quanmin.tv/1815505.mp4?t=1491361500","video_quality":"234","view":"14460","weight":0},{"anniversary":0,"avatar":"http://image.quanmin.tv/avatar/2f7f65652142d7d488d9fa101d787779?imageView2/2/w/300/","beauty_cover":"","category_id":1,"category_name":"英雄联盟","category_slug":"lol","check":true,"coin":411428,"create_at":"2017-04-05 09:04:49","default_image":"","fans":0,"first_play_at":"1970-01-01 08:00:00","follow":13297,"is_shield":false,"landscape":1,"last_end_at":"1970-01-01 08:00:00","last_play_at":"1970-01-01 08:00:00","last_thumb":"2221033-1491317523-90.jpg","level":0,"like":0,"link":"http://www.quanmin.tv/2221033","love_cover":"","max_view":0,"nick":"全民TV柠檬","no":2221033,"play_count":0,"play_status":true,"play_true":0,"position":"","recommend_image":"","screen":0,"slug":"","starlight":411428,"status":2,"stream":"http://flv.quanmin.tv/live/2221033_L3.flv","thumb":"http://snap.quanmin.tv/2221033-1491361682-562.jpg?imageView2/2/w/390/","title":"直播一周年了。一路感谢有你们，水友赛回馈","uid":2221033,"video":"http://thumb.quanmin.tv/2221033.mp4?t=1491361500","video_quality":"34","view":"28122","weight":0},{"anniversary":0,"avatar":"http://a.img.shouyintv.cn/v2Zv101-normal","beauty_cover":"","category_id":13,"category_name":"全民户外","category_slug":"huwai","check":true,"coin":8069,"create_at":"2017-04-05 08:53:01","default_image":"","fans":0,"first_play_at":"1970-01-01 08:00:00","follow":943,"is_shield":false,"landscape":1,"last_end_at":"1970-01-01 08:00:00","last_play_at":"1970-01-01 08:00:00","last_thumb":"1599977846-1490844429-414.jpg","level":0,"like":0,"link":"http://www.quanmin.tv/v/quanminjixiang","love_cover":"","max_view":0,"nick":"全民吉祥","no":15439129,"play_count":0,"play_status":true,"play_true":0,"position":"外太空","recommend_image":"","screen":0,"slug":"quanminjixiang","starlight":8069,"status":2,"stream":"http://flv.quanmin.tv/live/1599977846.flv","thumb":"http://snap.quanmin.tv/1599977846-1491361652-391.jpg?imageView2/2/w/390/","title":"啊 白雪","uid":1599977846,"video":"http://thumb.quanmin.tv/1599977846.mp4?t=1491361500","view":"6024","weight":0}]
          * name : 精彩推荐
          * screen : 0
          * slug :
@@ -131,17 +132,17 @@ public class HomeEntity {
              * category_name : 王者荣耀
              * category_slug : wangzhe
              * check : true
-             * coin : 42894
-             * create_at : 2017-04-01 12:48:44
+             * coin : 44718
+             * create_at : 2017-04-05 10:44:38
              * default_image :
              * fans : 0
              * first_play_at : 1970-01-01 08:00:00
-             * follow : 4059
+             * follow : 4086
              * is_shield : false
              * landscape : 1
              * last_end_at : 1970-01-01 08:00:00
              * last_play_at : 1970-01-01 08:00:00
-             * last_thumb : 1547610222-1490976233-936.jpg
+             * last_thumb : 1547610222-1491360053-571.jpg
              * level : 0
              * like : 0
              * link : http://www.quanmin.tv/14863838
@@ -155,18 +156,17 @@ public class HomeEntity {
              * position : 外太空
              * recommend_image :
              * screen : 0
-             * starlight : 42894
+             * starlight : 44718
              * status : 2
              * stream : http://flv.quanmin.tv/live/1547610222.flv
-             * thumb : http://snap.quanmin.tv/1547610222-1491030054-938.jpg?imageView2/2/w/390/
+             * thumb : http://snap.quanmin.tv/1547610222-1491361733-787.jpg?imageView2/2/w/390/
              * title : 我要全区第一个上王者
              * uid : 1547610222
-             * video : http://thumb.quanmin.tv/1547610222.mp4?t=1491030000
-             * view : 18825
+             * video : http://thumb.quanmin.tv/1547610222.mp4?t=1491361500
+             * view : 15946
              * weight : 0
              * slug :
-             * app_shuffling_image : http://image.quanmin.tv/118add2628e3aba718d5a59a252f440bjpg
-             * video_quality : 3
+             * video_quality : 234
              */
 
             private int anniversary;
@@ -210,7 +210,6 @@ public class HomeEntity {
             private String view;
             private int weight;
             private String slug;
-            private String app_shuffling_image;
             private String video_quality;
 
             public int getAnniversary() {
@@ -539,14 +538,6 @@ public class HomeEntity {
 
             public void setSlug(String slug) {
                 this.slug = slug;
-            }
-
-            public String getApp_shuffling_image() {
-                return app_shuffling_image;
-            }
-
-            public void setApp_shuffling_image(String app_shuffling_image) {
-                this.app_shuffling_image = app_shuffling_image;
             }
 
             public String getVideo_quality() {

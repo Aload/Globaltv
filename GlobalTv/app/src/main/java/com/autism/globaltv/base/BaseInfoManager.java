@@ -3,6 +3,7 @@ package com.autism.globaltv.base;
 import android.content.Context;
 import android.os.Handler;
 
+import com.autism.baselibs.utils.LogUtil;
 import com.autism.logiclibs.LogicApp;
 
 /**

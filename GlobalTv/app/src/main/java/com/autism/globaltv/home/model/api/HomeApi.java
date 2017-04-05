@@ -1,7 +1,8 @@
 package com.autism.globaltv.home.model.api;
 
-import com.autism.baselibs.http.rx.ResultBean;
-import com.autism.globaltv.home.model.HomeEntity;
+import com.google.gson.JsonObject;
+
+import org.json.JSONObject;
 
 import retrofit2.http.GET;
 import rx.Observable;
@@ -12,5 +13,9 @@ import rx.Observable;
  */
 public interface HomeApi {
     @GET("json/app/index/recommend/list-android.json?11241742&v=2.2.4&os=1&ver=4")
-    Observable<ResultBean<HomeEntity>> getRecommendCategories();
+    Observable<JsonObject> getRecommendCategories();
+
+    //banner
+    @GET("json/page/app-data/info.json?v=2.2.4&os=1&ver=4")
+    Observable<JsonObject> getAppStartInfo();
 }

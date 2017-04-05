@@ -12,6 +12,7 @@ import com.autism.globaltv.base.BaseFra;
 public class SuperManager {
     private static SuperManager mSuperManager;
     private static SparseArray<BaseFra> mContainer = new SparseArray<>();
+    private static final String TAG = SuperManager.class.getSimpleName();
 
     private SuperManager() {
     }
@@ -50,7 +51,7 @@ public class SuperManager {
                 mFra = new MineFra();
                 break;
             default:
-                LogUtil.e("切换异常");
+                LogUtil.e(TAG, "切换异常");
                 break;
         }
         mContainer.put(position, mFra);

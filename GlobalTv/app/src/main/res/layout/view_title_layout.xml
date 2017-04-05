@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <View
         android:id="@+id/view_status_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
     <RelativeLayout
         android:id="@+id/view_title"
@@ -36,7 +36,7 @@
                 android:gravity="center_vertical|right"
                 android:includeFontPadding="false"
                 android:textColor="@color/black"
-                android:textSize="@dimen/size_2"/>
+                android:textSize="@dimen/size_2" />
         </LinearLayout>
 
         <LinearLayout
@@ -61,7 +61,7 @@
                 android:gravity="center_vertical|right"
                 android:includeFontPadding="false"
                 android:textColor="@color/black"
-                android:textSize="@dimen/size_2"/>
+                android:textSize="@dimen/size_2" />
         </LinearLayout>
 
         <TextView
@@ -75,7 +75,7 @@
             android:gravity="center"
             android:maxLines="1"
             android:textColor="@color/main_black"
-            android:textSize="@dimen/size_1"/>
+            android:textSize="@dimen/size_1" />
 
         <LinearLayout
             android:id="@+id/ll_title_right"
@@ -97,7 +97,7 @@
                 android:gravity="center_vertical|right"
                 android:includeFontPadding="false"
                 android:textColor="@color/color_2"
-                android:textSize="@dimen/size_2"/>
+                android:textSize="@dimen/size_2" />
         </LinearLayout>
 
         <TextView
@@ -113,7 +113,7 @@
             android:paddingRight="@dimen/dp_5"
             android:textColor="@color/white"
             android:textSize="@dimen/size_4"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <LinearLayout
             android:id="@+id/ll_title_right1"
@@ -137,7 +137,7 @@
                 android:includeFontPadding="false"
                 android:textColor="@color/color_2"
                 android:textSize="@dimen/size_2"
-                android:visibility="visible"/>
+                android:visibility="visible" />
         </LinearLayout>
     </RelativeLayout>
 
@@ -146,5 +146,5 @@
         android:layout_width="match_parent"
         android:layout_height="0.7dp"
         android:background="@color/divider_line"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 </LinearLayout>

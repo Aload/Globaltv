@@ -32,10 +32,10 @@ public class HomeAct extends BaseAct implements RadioGroup.OnCheckedChangeListen
         mRbColumn = (RadioButton) findViewById(R.id.rb_3);
         mRbMine = (RadioButton) findViewById(R.id.rb_4);
         measure(rgGroup, 0, 160);
-        measure(mRbHome, 78, 78);
-        measure(mRbPlayer, 78, 78);
-        measure(mRbColumn, 78, 78);
-        measure(mRbMine, 78, 78);
+        measure(mRbHome, 120, 120);
+        measure(mRbPlayer, 120, 120);
+        measure(mRbColumn, 120, 120);
+        measure(mRbMine, 120, 120);
         rgGroup.check(R.id.rb_1);
         changeReplaceFra(0);
         rgGroup.setOnCheckedChangeListener(this);

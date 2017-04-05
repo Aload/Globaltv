@@ -2,12 +2,13 @@ package com.autism.globaltv.home.pre;
 
 import android.app.Activity;
 
-import com.autism.baselibs.http.rx.ResultBean;
 import com.autism.baselibs.http.rx.RxSubscriber;
 import com.autism.globaltv.base.BasePresenter;
 import com.autism.globaltv.home.model.HomeEntity;
 import com.autism.globaltv.home.model.api.HomeReq;
 import com.autism.globaltv.home.view.IHomeView;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import rx.Subscriber;
 
@@ -24,14 +25,16 @@ public class HomePre extends BasePresenter<IHomeView> {
 
     @Override
     public void attachView() {
-        Subscriber<ResultBean<HomeEntity>> subscriber = new RxSubscriber<HomeEntity>(mActivity) {
+        Subscriber<JsonObject> subscriber = new RxSubscriber(mActivity) {
             @Override
-            public void _onNext(HomeEntity homeBean) {
-                mView.onSuccess(homeBean);
+            public void _onNext(String homeBean) {
+                Gson mGson = new Gson();
+                HomeEntity homeEntity = mGson.fromJson(homeBean, HomeEntity.class);
+                mView.onSuccess(homeEntity.getRoom());
             }
 
             @Override
-            public void _onError(int code) {
+            public void _onError(String code) {
                 mView.onError();
             }
         };

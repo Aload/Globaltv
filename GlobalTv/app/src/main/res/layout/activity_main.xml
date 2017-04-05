@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     tools:context="com.autism.globaltv.home.HomeAct">
 
+
     <FrameLayout
         android:id="@+id/fl_contain"
         android:layout_width="match_parent"
@@ -44,5 +45,6 @@
             android:drawableTop="@drawable/selector_btn_tabbar_wode"
             android:text="@string/tab_04" />
     </RadioGroup>
+
 
 </RelativeLayout>
