@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import com.autism.baselibs.http.rx.RxSubscriber;
 import com.autism.globaltv.base.BasePresenter;
+import com.autism.globaltv.home.model.BannerEntity;
 import com.autism.globaltv.home.model.HomeEntity;
 import com.autism.globaltv.home.model.api.HomeReq;
 import com.autism.globaltv.home.view.IHomeView;
@@ -25,6 +26,7 @@ public class HomePre extends BasePresenter<IHomeView> {
 
     @Override
     public void attachView() {
+        onBanner();
         Subscriber<JsonObject> subscriber = new RxSubscriber(mActivity) {
             @Override
             public void _onNext(String homeBean) {
@@ -39,6 +41,24 @@ public class HomePre extends BasePresenter<IHomeView> {
             }
         };
         HomeReq.getInstance().getHomeData(subscriber);
+        addSubscrebe(subscriber);
+    }
+
+    private void onBanner() {
+        Subscriber<JsonObject> subscriber = new RxSubscriber(mActivity) {
+            @Override
+            public void _onNext(String homeBean) {
+                Gson mGson = new Gson();
+                BannerEntity homeEntity = mGson.fromJson(homeBean, BannerEntity.class);
+                mView.onBannerSuccess(homeEntity.getAppfocus());
+            }
+
+            @Override
+            public void _onError(String code) {
+                mView.onError();
+            }
+        };
+        HomeReq.getInstance().getBannerData(subscriber);
         addSubscrebe(subscriber);
     }
 

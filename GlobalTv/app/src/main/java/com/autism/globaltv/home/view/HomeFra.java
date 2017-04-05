@@ -12,6 +12,7 @@ import com.autism.baselibs.view.refresh.container.MeituanHeader;
 import com.autism.baselibs.view.tab.SlidingTabLayout;
 import com.autism.globaltv.R;
 import com.autism.globaltv.base.BaseFra;
+import com.autism.globaltv.home.model.BannerEntity;
 import com.autism.globaltv.home.model.HomeEntity;
 import com.autism.globaltv.home.pre.HomePre;
 import com.autism.globaltv.home.pre.RecommonAdapter;
@@ -30,6 +31,7 @@ public class HomeFra extends BaseFra<HomePre> implements IHomeView, View.OnClick
     private int[] pullAnimSrcs = new int[]{R.mipmap.mt_pull, R.mipmap.mt_pull01, R.mipmap.mt_pull02, R.mipmap.mt_pull03, R.mipmap.mt_pull04, R.mipmap.mt_pull05};
     private int[] refreshAnimSrcs = new int[]{R.mipmap.mt_refreshing01, R.mipmap.mt_refreshing02, R.mipmap.mt_refreshing03, R.mipmap.mt_refreshing04, R.mipmap.mt_refreshing05, R.mipmap.mt_refreshing06};
     private int[] loadingAnimSrcs = new int[]{R.mipmap.mt_loading01, R.mipmap.mt_loading02};
+    private List<BannerEntity.AppfocusBean> mList;
 
     @Override
     protected HomePre getPresenter() {
@@ -81,9 +83,9 @@ public class HomeFra extends BaseFra<HomePre> implements IHomeView, View.OnClick
 
     @Override
     public void onSuccess(List<HomeEntity.RoomBean> mBean) {
-        LogUtil.d(TAG, "请求成功");
-//        mRecommonAdapter.notifyUi(mBean);
-        mRecommonAdapter = new RecommonAdapter(getActivity(), mBean);
+        if (null == mBean && mBean.isEmpty()) return;
+        mRecommonAdapter = new RecommonAdapter(getActivity(), mBean, mList);
+        mPager.setOffscreenPageLimit(2);
         mPager.setAdapter(mRecommonAdapter);
         mTabLayout.setViewPager(mPager);
     }
@@ -91,6 +93,11 @@ public class HomeFra extends BaseFra<HomePre> implements IHomeView, View.OnClick
     @Override
     public void onError() {
         LogUtil.d(TAG, "请求失败");
+    }
+
+    @Override
+    public void onBannerSuccess(List<BannerEntity.AppfocusBean> mBean) {
+        this.mList = mBean;
     }
 
     @Override

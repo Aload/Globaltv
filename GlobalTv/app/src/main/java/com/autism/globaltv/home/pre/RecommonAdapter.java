@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.autism.globaltv.R;
 import com.autism.globaltv.base.BasePagerHolder;
+import com.autism.globaltv.home.model.BannerEntity;
 import com.autism.globaltv.home.model.HomeEntity;
 
 import java.util.List;
@@ -18,11 +19,13 @@ import java.util.List;
  */
 public class RecommonAdapter extends PagerAdapter {
     private final Context mContext;
+    private List<BannerEntity.AppfocusBean> mBannerList;
     private List<HomeEntity.RoomBean> mEntity;
 
-    public RecommonAdapter(Context mContext, List<HomeEntity.RoomBean> mEntity) {
+    public RecommonAdapter(Context mContext, List<HomeEntity.RoomBean> mEntity, List<BannerEntity.AppfocusBean> mList) {
         this.mContext = mContext;
         this.mEntity = mEntity;
+        this.mBannerList = mList;
     }
 
     @Override
@@ -42,11 +45,11 @@ public class RecommonAdapter extends PagerAdapter {
         if (position == 0) {
             mView = LayoutInflater.from(mContext).inflate(R.layout.recommom_layout, container, false);
             mHolder = new RecommonHolder(mView, mContext);
-            mHolder.setData(mEntity);
+            mHolder.setData(mEntity, mBannerList);
         } else {
             mView = LayoutInflater.from(mContext).inflate(R.layout.common_layout, container, false);
             mHolder = new CommonHolder(mView, mContext);
-            mHolder.setData(mEntity.get(position));
+            mHolder.setData(mEntity.get(position), null);
         }
         container.addView(mView);
         return mView;

@@ -1,5 +1,6 @@
 package com.autism.globaltv.home.view;
 
+import com.autism.globaltv.R;
 import com.autism.globaltv.base.BaseFra;
 import com.autism.globaltv.home.pre.ColumnPre;
 import com.autism.globaltv.home.pre.HomePre;
@@ -16,6 +17,6 @@ public class ColumnFra extends BaseFra<ColumnPre> {
 
     @Override
     protected int getReLayoutFraID() {
-        return 0;
+        return R.layout.column_fra_layout;
     }
 }

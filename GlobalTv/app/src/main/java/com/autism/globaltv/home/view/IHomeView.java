@@ -1,6 +1,7 @@
 package com.autism.globaltv.home.view;
 
 import com.autism.globaltv.base.IView;
+import com.autism.globaltv.home.model.BannerEntity;
 import com.autism.globaltv.home.model.HomeEntity;
 
 import org.json.JSONObject;
@@ -15,4 +16,6 @@ public interface IHomeView extends IView {
     void onSuccess(List<HomeEntity.RoomBean> mBean);
 
     void onError();
+
+    void onBannerSuccess(List<BannerEntity.AppfocusBean> mBean);
 }

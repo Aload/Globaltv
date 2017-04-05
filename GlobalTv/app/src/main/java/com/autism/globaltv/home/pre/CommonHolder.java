@@ -4,7 +4,10 @@ import android.content.Context;
 import android.view.View;
 
 import com.autism.globaltv.base.BasePagerHolder;
+import com.autism.globaltv.home.model.BannerEntity;
 import com.autism.globaltv.home.model.HomeEntity;
+
+import java.util.List;
 
 /**
  * Author：i5 on 2017/4/5 14:18
@@ -21,7 +24,7 @@ class CommonHolder extends BasePagerHolder<HomeEntity.RoomBean> {
     }
 
     @Override
-    public void setData(HomeEntity.RoomBean mData) {
-        super.setData(mData);
+    public void setData(HomeEntity.RoomBean mData, List<BannerEntity.AppfocusBean> mBannerList) {
+        super.setData(mData, mBannerList);
     }
 }

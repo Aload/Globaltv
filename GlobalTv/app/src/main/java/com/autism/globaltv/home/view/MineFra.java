@@ -1,5 +1,6 @@
 package com.autism.globaltv.home.view;
 
+import com.autism.globaltv.R;
 import com.autism.globaltv.base.BaseFra;
 import com.autism.globaltv.base.IPresenter;
 import com.autism.globaltv.home.pre.ColumnPre;
@@ -16,6 +17,6 @@ public class MineFra extends BaseFra<IPresenter> {
 
     @Override
     protected int getReLayoutFraID() {
-        return 0;
+        return R.layout.mine_fra_layout;
     }
 }

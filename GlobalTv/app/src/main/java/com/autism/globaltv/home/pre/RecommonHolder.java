@@ -5,9 +5,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.autism.baselibs.view.autopager.AutoScrollViewPager;
 import com.autism.globaltv.R;
 import com.autism.globaltv.base.BasePagerHolder;
+import com.autism.globaltv.home.model.BannerEntity;
 import com.autism.globaltv.home.model.HomeEntity;
+import com.autism.globaltv.home.view.BannerPagerAadapter;
 
 import java.util.List;
 
@@ -17,6 +20,7 @@ import java.util.List;
  */
 public class RecommonHolder extends BasePagerHolder<List<HomeEntity.RoomBean>> {
     private RecyclerView mRecycler;
+    private AutoScrollViewPager mPager;
 
     public RecommonHolder(View mView, Context mContext) {
         super(mView, mContext);
@@ -24,16 +28,19 @@ public class RecommonHolder extends BasePagerHolder<List<HomeEntity.RoomBean>> {
 
     @Override
     public void onInitView(View mView) {
-//        AutoScrollViewPager mPager = (AutoScrollViewPager) mView.findViewById(R.id.auto_pager);
+        mPager = (AutoScrollViewPager) mView.findViewById(R.id.auto_pager);
         mRecycler = (RecyclerView) mView.findViewById(R.id.auto_recycler);
+        mPager.setScrollFactgor(6);
+        mPager.setOffscreenPageLimit(5);
+        mPager.startAutoScroll(3000);
     }
 
     @Override
-    public void setData(List<HomeEntity.RoomBean> mData) {
-        super.setData(mData);
+    public void setData(List<HomeEntity.RoomBean> mData, List<BannerEntity.AppfocusBean> mBannerList) {
+        super.setData(mData, mBannerList);
+        mPager.setAdapter(new BannerPagerAadapter(mContext, mBannerList));
         RecomRecyclerAdapter recomRecyclerAdapter = new RecomRecyclerAdapter(mData);
         mRecycler.setLayoutManager(new LinearLayoutManager(mContext));
         mRecycler.setAdapter(recomRecyclerAdapter);
-//        recomRecyclerAdapter.notifyUi(mData);
     }
 }
