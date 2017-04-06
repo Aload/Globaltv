@@ -33,10 +33,9 @@ public class PlayerFra extends BaseFra<PlayerPre> implements LiveView {
         setTitleText("直播频道");
         final SpringView mRefresh = (SpringView) mView.findViewById(R.id.refresh_sp);
         RecyclerView mRecycler = (RecyclerView) mView.findViewById(R.id.live_recycler);
-        mRecycler.setLayoutManager(new GridLayoutManager(getActivity(), 2, LinearLayoutManager.VERTICAL, false));
-
+        mRecycler.setLayoutManager(new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false));
         mLiveAdapter = new LiveAdapter();
-        mRecycler.setAdapter(null);
+        mRecycler.setAdapter(mLiveAdapter);
         mRefresh.setType(SpringView.Type.FOLLOW);
         mRefresh.setListener(new SpringView.OnFreshListener() {
             @Override

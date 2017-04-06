@@ -34,7 +34,7 @@ public class ColumnFra extends BaseFra<ColumnPre> implements ColumnView, View.On
         setTitleRightIcon(R.drawable.btn_search_selector, this);
         showDivider(true);
         RecyclerView mRecycler = (RecyclerView) mView.findViewById(R.id.column_recycler);
-        mRecycler.setLayoutManager(new GridLayoutManager(getActivity(), 3, LinearLayoutManager.VERTICAL, false));
+        mRecycler.setLayoutManager(new GridLayoutManager(getActivity(), 3, GridLayoutManager.VERTICAL, true));
         columnAdapter = new ColumnAdapter();
         mRecycler.setAdapter(columnAdapter);
     }
