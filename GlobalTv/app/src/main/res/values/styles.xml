@@ -19,4 +19,14 @@
         <item name="android:textColor">@color/main_black</item>
         <item name="android:gravity">center</item>
     </style>
+
+    <style name="font">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="font14" parent="font">
+        <item name="android:textSize">14sp</item>
+    </style>
 </resources>

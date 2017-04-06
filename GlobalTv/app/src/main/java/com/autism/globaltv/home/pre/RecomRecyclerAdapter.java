@@ -3,7 +3,6 @@ package com.autism.globaltv.home.pre;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
-import com.autism.globaltv.R;
 import com.autism.globaltv.base.BaseRecyclerHolder;
 import com.autism.globaltv.home.model.HomeEntity;
 import com.autism.globaltv.home.view.RecomRecyclerHolder;
@@ -24,7 +23,8 @@ public class RecomRecyclerAdapter extends RecyclerView.Adapter<BaseRecyclerHolde
 
     @Override
     public BaseRecyclerHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new RecomRecyclerHolder(parent, R.layout.recommon_item);
+        RecomRecyclerHolder recomRecyclerHolder = new RecomRecyclerHolder(parent);
+        return recomRecyclerHolder;
     }
 
     @Override

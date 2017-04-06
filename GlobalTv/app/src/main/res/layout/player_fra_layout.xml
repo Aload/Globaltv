@@ -4,4 +4,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <include layout="@layout/view_title_layout" />
+
+    <com.autism.baselibs.view.refresh.SpringView
+        android:id="@+id/refresh_sp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/live_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.autism.baselibs.view.refresh.SpringView>
 </LinearLayout>

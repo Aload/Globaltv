@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import com.autism.logiclibs.UiUtils;
 
 /**
- * Author：i5 on 2017/4/5 14:37
+ * Author：autism on 2017/4/5 14:37
  * Used:GlobalTv
  */
 public abstract class BaseRecyclerHolder<M> extends RecyclerView.ViewHolder {
@@ -32,6 +32,7 @@ public abstract class BaseRecyclerHolder<M> extends RecyclerView.ViewHolder {
     protected Context getContext() {
         return itemView.getContext();
     }
+
     /**
      * 测量view位置
      *

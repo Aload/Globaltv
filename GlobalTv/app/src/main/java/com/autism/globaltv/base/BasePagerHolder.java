@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 
 import com.autism.globaltv.home.model.BannerEntity;
+import com.autism.logiclibs.UiUtils;
 
 import java.util.List;
 
@@ -23,5 +24,16 @@ public abstract class BasePagerHolder<T> {
 
     public void setData(T mData, List<BannerEntity.AppfocusBean> mBannerList) {
 
+    }
+
+    /**
+     * 测量view位置
+     *
+     * @param mViewTitle
+     * @param width      width
+     * @param height     height
+     */
+    protected void measure(View mViewTitle, int width, int height) {
+        UiUtils.measure(mViewTitle, width, height);
     }
 }

@@ -80,6 +80,11 @@ public abstract class BaseFra<T extends IPresenter> extends Fragment {
 
     protected abstract int getReLayoutFraID();
 
+    /**
+     * 初始化标题
+     *
+     * @param mView
+     */
     protected void initTitle(View mView) {
         mViewTitle = mView.findViewById(R.id.view_title);
         mViewDivider = mView.findViewById(R.id.view_divider);
@@ -95,6 +100,17 @@ public abstract class BaseFra<T extends IPresenter> extends Fragment {
             mTvTitleLeft1 = (TextView) mView.findViewById(R.id.tv_title_left_1);
             mTvTitleRight = (TextView) mView.findViewById(R.id.tv_title_right);
             mTvTitleRight1 = (TextView) mView.findViewById(R.id.tv_title_right_1);
+        }
+    }
+
+    /**
+     * 设置文字
+     *
+     * @param title
+     */
+    protected void setTitleText(String title) {
+        if (null != mTvTitle) {
+            mTvTitle.setText(title);
         }
     }
 

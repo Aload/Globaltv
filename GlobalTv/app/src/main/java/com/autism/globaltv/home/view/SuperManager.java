@@ -4,6 +4,9 @@ import android.util.SparseArray;
 
 import com.autism.baselibs.utils.LogUtil;
 import com.autism.globaltv.base.BaseFra;
+import com.autism.globaltv.column.view.ColumnFra;
+import com.autism.globaltv.live.view.PlayerFra;
+import com.autism.globaltv.mine.MineFra;
 
 /**
  * Author：AutismF on 2017/4/1 15:54
@@ -34,7 +37,7 @@ public class SuperManager {
      */
     public BaseFra getHomeFraUi(int position) {
         BaseFra mFra = null;
-        if (null != mContainer && mContainer.size() > 0) {
+        if (null != mContainer && null != mContainer.get(position)) {
             return mContainer.get(position);
         }
         switch (position) {

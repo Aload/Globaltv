@@ -6,4 +6,16 @@
     <string name="tab_02">栏目</string>
     <string name="tab_03">直播</string>
     <string name="tab_04">我的</string>
+
+    <string name="my_check_update">检查更新</string>
+    <string name="my_feedback">意见反馈</string>
+    <string name="my_focus_on">我的关注</string>
+    <string name="my_getseed">游戏中心</string>
+    <string name="my_history">观看历史</string>
+    <string name="my_host_manage">房管管理</string>
+    <string name="my_mind">开播提醒</string>
+    <string name="my_neiku" />
+    <string name="my_room_manage" translatable="false">房间管理</string>
+    <string name="my_task">种子任务</string>
+    <string name="buffering">正在缓冲...</string>
 </resources>

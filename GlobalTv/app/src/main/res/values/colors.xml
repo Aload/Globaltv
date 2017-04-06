@@ -11,4 +11,9 @@
     <color name="oval_point">#FF563C</color>
     <color name="reb_change">#fffb223c</color>
     <color name="line_color">#ffe6edf0</color>
+    <color name="divider_high">#ffe6edf0</color>
+    <color name="assist_blue">#ff35aaf6</color>
+    <color name="assist_blue_pressed">#ff1388d3</color>
+    <color name="divider_low">#fff5f8fa</color>
+    <color name="org">#fff3f4f9</color>
 </resources>

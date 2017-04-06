@@ -3,16 +3,13 @@ package com.autism.baselibs.http.rx;
 import android.app.Activity;
 
 import com.autism.baselibs.utils.LogUtil;
-import com.google.gson.JsonObject;
-
-import org.json.JSONObject;
 
 import rx.Subscriber;
 
 /**
  * 封装Subscriber
  */
-public class RxSubscriber extends Subscriber<JsonObject> {
+public class RxSubscriber<T> extends Subscriber<T> {
 
     private Activity mActivity;
 
@@ -33,15 +30,16 @@ public class RxSubscriber extends Subscriber<JsonObject> {
     }
 
     @Override
-    public void onNext(JsonObject t) {
+    public void onNext(T t) {
         if (null == t) {
             _onError("数据异常");
-        }else _onNext(t.toString());
+        } else _onNext(t);
     }
 
-    public void _onNext(String t) {
+    public void _onNext(T t) {
 
     }
+
     public void _onError(String t) {
 
     }

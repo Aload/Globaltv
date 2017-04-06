@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">BaseLibs</string>
+    <item name="scrollview" type="id" />
 </resources>

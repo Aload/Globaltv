@@ -3,21 +3,26 @@ package com.autism.globaltv.home;
 import android.support.annotation.IdRes;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
+import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.autism.baselibs.view.viewpager.NoScollViewPager;
 import com.autism.globaltv.R;
 import com.autism.globaltv.base.BaseAct;
 import com.autism.globaltv.base.BaseFra;
 import com.autism.globaltv.base.IPresenter;
+import com.autism.globaltv.home.view.HomeFraPager;
 import com.autism.globaltv.home.view.SuperManager;
 
 /**
  * Author：Autism on 2017/4/1 15:09
  * Used:GlobalTv
  */
-public class HomeAct extends BaseAct implements RadioGroup.OnCheckedChangeListener {
+public class HomeAct extends BaseAct implements RadioGroup.OnCheckedChangeListener, ViewPager.OnPageChangeListener {
     private RadioButton mRbHome, mRbPlayer, mRbColumn, mRbMine;
+    private NoScollViewPager mPager;
 
     @Override
     protected IPresenter getPresenter() {
@@ -26,6 +31,11 @@ public class HomeAct extends BaseAct implements RadioGroup.OnCheckedChangeListen
 
     @Override
     protected void onInitViews() {
+        mPager = (NoScollViewPager) findViewById(R.id.fl_contain);
+        HomeFraPager homeFraPager = new HomeFraPager(getSupportFragmentManager());
+        mPager.setOffscreenPageLimit(3);
+        mPager.addOnPageChangeListener(this);
+        mPager.setAdapter(homeFraPager);
         RadioGroup rgGroup = (RadioGroup) findViewById(R.id.rg_group);
         mRbHome = (RadioButton) findViewById(R.id.rb_1);
         mRbPlayer = (RadioButton) findViewById(R.id.rb_2);
@@ -37,21 +47,8 @@ public class HomeAct extends BaseAct implements RadioGroup.OnCheckedChangeListen
         measure(mRbColumn, 120, 120);
         measure(mRbMine, 120, 120);
         rgGroup.check(R.id.rb_1);
-        changeReplaceFra(0);
+        mPager.setCurrentItem(0, false);
         rgGroup.setOnCheckedChangeListener(this);
-    }
-
-    /**
-     * 切换tab
-     *
-     * @param position
-     */
-    public void changeReplaceFra(int position) {
-        BaseFra homeFraUi = SuperManager.getmSuperManager().getHomeFraUi(position);
-        FragmentManager supportFragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = supportFragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fl_contain, homeFraUi);
-        fragmentTransaction.commit();
     }
 
     @Override
@@ -63,17 +60,32 @@ public class HomeAct extends BaseAct implements RadioGroup.OnCheckedChangeListen
     public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
         switch (checkedId) {
             case R.id.rb_1:
-                changeReplaceFra(0);
+                mPager.setCurrentItem(0, false);
                 break;
             case R.id.rb_2:
-                changeReplaceFra(1);
+                mPager.setCurrentItem(1, false);
                 break;
             case R.id.rb_3:
-                changeReplaceFra(2);
+                mPager.setCurrentItem(2, false);
                 break;
             case R.id.rb_4:
-                changeReplaceFra(3);
+                mPager.setCurrentItem(3, false);
                 break;
         }
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        SuperManager.getmSuperManager().getHomeFraUi(position);
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
     }
 }

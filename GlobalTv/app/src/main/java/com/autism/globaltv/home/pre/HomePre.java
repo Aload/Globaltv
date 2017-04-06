@@ -27,11 +27,13 @@ public class HomePre extends BasePresenter<IHomeView> {
     @Override
     public void attachView() {
         onBanner();
-        Subscriber<JsonObject> subscriber = new RxSubscriber(mActivity) {
+        Subscriber<JsonObject> subscriber = new RxSubscriber<JsonObject>(mActivity) {
             @Override
-            public void _onNext(String homeBean) {
+            public void _onNext(JsonObject homeBean) {
+                super._onNext(homeBean);
+                String string = homeBean.toString();
                 Gson mGson = new Gson();
-                HomeEntity homeEntity = mGson.fromJson(homeBean, HomeEntity.class);
+                HomeEntity homeEntity = mGson.fromJson(string, HomeEntity.class);
                 mView.onSuccess(homeEntity.getRoom());
             }
 
@@ -45,11 +47,11 @@ public class HomePre extends BasePresenter<IHomeView> {
     }
 
     private void onBanner() {
-        Subscriber<JsonObject> subscriber = new RxSubscriber(mActivity) {
+        Subscriber<JsonObject> subscriber = new RxSubscriber<JsonObject>(mActivity) {
             @Override
-            public void _onNext(String homeBean) {
+            public void _onNext(JsonObject homeBean) {
                 Gson mGson = new Gson();
-                BannerEntity homeEntity = mGson.fromJson(homeBean, BannerEntity.class);
+                BannerEntity homeEntity = mGson.fromJson(homeBean.toString(), BannerEntity.class);
                 mView.onBannerSuccess(homeEntity.getAppfocus());
             }
 

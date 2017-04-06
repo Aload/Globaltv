@@ -6,7 +6,7 @@
     tools:context="com.autism.globaltv.home.HomeAct">
 
 
-    <FrameLayout
+    <com.autism.baselibs.view.viewpager.NoScollViewPager
         android:id="@+id/fl_contain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

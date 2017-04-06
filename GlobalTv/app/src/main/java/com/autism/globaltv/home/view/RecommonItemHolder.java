@@ -30,8 +30,6 @@ public class RecommonItemHolder extends BaseRecyclerHolder<HomeEntity.RoomBean.L
         mImagePerson = $(R.id.person_icon);
         mTitle_01 = $(R.id.title_1);
         mTitle_02 = $(R.id.title_2);
-        measure(mImageBg, 250, 250);
-        measure(mImagePerson, 75, 75);
     }
 
     @Override

@@ -20,12 +20,8 @@ public class RecomRecyclerHolder extends BaseRecyclerHolder<HomeEntity.RoomBean>
     private TextView mTitle;
     private RecyclerView mRecycler;
 
-    public RecomRecyclerHolder(View itemView) {
-        super(itemView);
-    }
-
-    public RecomRecyclerHolder(ViewGroup paresen, int res) {
-        super(paresen, res);
+    public RecomRecyclerHolder(ViewGroup parent) {
+        super(parent, R.layout.recommon_item);
         mTitle = $(R.id.item_title);
         mRecycler = $(R.id.child_recycler);
         View mLayout = $(R.id.title_layout);
