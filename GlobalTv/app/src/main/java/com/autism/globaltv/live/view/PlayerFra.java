@@ -8,6 +8,8 @@ import android.view.View;
 
 import com.autism.baselibs.utils.LogUtil;
 import com.autism.baselibs.view.refresh.SpringView;
+import com.autism.baselibs.view.refresh.container.MeituanFooter;
+import com.autism.baselibs.view.refresh.container.MeituanHeader;
 import com.autism.globaltv.R;
 import com.autism.globaltv.base.BaseFra;
 import com.autism.globaltv.live.model.LiveEntity;
@@ -28,36 +30,10 @@ public class PlayerFra extends BaseFra<PlayerPre> implements LiveView {
     @Override
     protected void onInitFraView(View mView) {
         super.onInitFraView(mView);
-        super.initTitle(mView);
-        showDivider(true);
-        setTitleText("直播频道");
-        final SpringView mRefresh = (SpringView) mView.findViewById(R.id.refresh_sp);
         RecyclerView mRecycler = (RecyclerView) mView.findViewById(R.id.live_recycler);
         mRecycler.setLayoutManager(new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false));
         mLiveAdapter = new LiveAdapter();
         mRecycler.setAdapter(mLiveAdapter);
-        mRefresh.setType(SpringView.Type.FOLLOW);
-        mRefresh.setListener(new SpringView.OnFreshListener() {
-            @Override
-            public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        mRefresh.onFinishFreshAndLoad();
-                    }
-                }, 2000);
-            }
-
-            @Override
-            public void onLoadmore() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        mRefresh.onFinishFreshAndLoad();
-                    }
-                }, 2000);
-            }
-        });
     }
 
     @Override
@@ -67,11 +43,28 @@ public class PlayerFra extends BaseFra<PlayerPre> implements LiveView {
 
     @Override
     public void onSuccessLive(LiveEntity mLive) {
+        mRefresh.onFinishFreshAndLoad();
         mLiveAdapter.notifyUi(mLive.getData());
     }
 
     @Override
     public void onFailed(String msg) {
+        mRefresh.onFinishFreshAndLoad();
         LogUtil.d(TAG, msg);
+    }
+
+    @Override
+    public void onRefresh() {
+        mPresenter.attachView();
+    }
+
+    @Override
+    public void onLoadmore() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mRefresh.onFinishFreshAndLoad();
+            }
+        }, 2000);
     }
 }

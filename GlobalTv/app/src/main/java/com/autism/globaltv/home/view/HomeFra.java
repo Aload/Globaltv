@@ -6,9 +6,6 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.autism.baselibs.utils.LogUtil;
-import com.autism.baselibs.view.refresh.SpringView;
-import com.autism.baselibs.view.refresh.container.MeituanFooter;
-import com.autism.baselibs.view.refresh.container.MeituanHeader;
 import com.autism.baselibs.view.tab.SlidingTabLayout;
 import com.autism.globaltv.R;
 import com.autism.globaltv.base.BaseFra;
@@ -28,9 +25,6 @@ public class HomeFra extends BaseFra<HomePre> implements IHomeView, View.OnClick
     private ImageView mTabIndicator;
     private ViewPager mPager;
     private RecommonAdapter mRecommonAdapter;
-    private int[] pullAnimSrcs = new int[]{R.mipmap.mt_pull, R.mipmap.mt_pull01, R.mipmap.mt_pull02, R.mipmap.mt_pull03, R.mipmap.mt_pull04, R.mipmap.mt_pull05};
-    private int[] refreshAnimSrcs = new int[]{R.mipmap.mt_refreshing01, R.mipmap.mt_refreshing02, R.mipmap.mt_refreshing03, R.mipmap.mt_refreshing04, R.mipmap.mt_refreshing05, R.mipmap.mt_refreshing06};
-    private int[] loadingAnimSrcs = new int[]{R.mipmap.mt_loading01, R.mipmap.mt_loading02};
     private List<BannerEntity.AppfocusBean> mList;
 
     @Override
@@ -45,34 +39,9 @@ public class HomeFra extends BaseFra<HomePre> implements IHomeView, View.OnClick
         setTitleLeftIcon(R.mipmap.img_rec_logo, null);
         setTitleRightIcon(R.drawable.btn_search_selector, this);
         showDivider(true);
-        final SpringView springView = (SpringView) mView.findViewById(R.id.pv_refresh);
         mTabLayout = (SlidingTabLayout) mView.findViewById(R.id.mTablayout);
         mTabIndicator = (ImageView) mView.findViewById(R.id.tabManager);
         mPager = (ViewPager) mView.findViewById(R.id.vp_pager);
-        springView.setType(SpringView.Type.FOLLOW);
-        springView.setListener(new SpringView.OnFreshListener() {
-            @Override
-            public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        springView.onFinishFreshAndLoad();
-                    }
-                }, 2000);
-            }
-
-            @Override
-            public void onLoadmore() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        springView.onFinishFreshAndLoad();
-                    }
-                }, 2000);
-            }
-        });
-        springView.setHeader(new MeituanHeader(getActivity(), pullAnimSrcs, refreshAnimSrcs));
-        springView.setFooter(new MeituanFooter(getActivity(), loadingAnimSrcs));
     }
 
 
@@ -83,6 +52,7 @@ public class HomeFra extends BaseFra<HomePre> implements IHomeView, View.OnClick
 
     @Override
     public void onSuccess(List<HomeEntity.RoomBean> mBean) {
+        mRefresh.onFinishFreshAndLoad();
         if (null == mBean && mBean.isEmpty()) return;
         mRecommonAdapter = new RecommonAdapter(getActivity(), mBean, mList);
         mPager.setOffscreenPageLimit(2);
@@ -92,6 +62,7 @@ public class HomeFra extends BaseFra<HomePre> implements IHomeView, View.OnClick
 
     @Override
     public void onError() {
+        mRefresh.onFinishFreshAndLoad();
         LogUtil.d(TAG, "请求失败");
     }
 
@@ -103,5 +74,22 @@ public class HomeFra extends BaseFra<HomePre> implements IHomeView, View.OnClick
     @Override
     public void onClick(View v) {
 
+    }
+
+    @Override
+    public void onRefresh() {
+        super.onRefresh();
+        mPresenter.attachView();
+    }
+
+    @Override
+    public void onLoadmore() {
+        super.onLoadmore();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mRefresh.onFinishFreshAndLoad();
+            }
+        }, 2000);
     }
 }

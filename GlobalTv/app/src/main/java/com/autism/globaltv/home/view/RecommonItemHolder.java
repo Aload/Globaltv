@@ -19,10 +19,6 @@ public class RecommonItemHolder extends BaseRecyclerHolder<HomeEntity.RoomBean.L
     private ImageView mImageBg, mImagePerson;
     private TextView mNum, mTitle_01, mTitle_02;
 
-    public RecommonItemHolder(View itemView) {
-        super(itemView);
-    }
-
     public RecommonItemHolder(ViewGroup paresen, int res) {
         super(paresen, res);
         mImageBg = $(R.id.img_bg);
@@ -37,7 +33,7 @@ public class RecommonItemHolder extends BaseRecyclerHolder<HomeEntity.RoomBean.L
         mTitle_01.setText(mData.getNick());
         mTitle_02.setText(mData.getTitle());
         mNum.setText(mData.getFollow());
-        GlideUtils.loadUriNetImg(getContext(), mData.getThumb(), mImageBg);
-        GlideUtils.loadCirleImg(getContext(), mData.getAvatar(), mImagePerson);
+        GlideUtils.loadUriNetImg(getContext(), mData.getThumb(), mImageBg, R.mipmap.ic_default_cover);
+        GlideUtils.loadCirleImg(getContext(), mData.getAvatar(), mImagePerson, R.mipmap.ic_default_head);
     }
 }

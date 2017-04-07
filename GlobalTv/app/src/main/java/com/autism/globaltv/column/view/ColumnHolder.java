@@ -23,13 +23,13 @@ public class ColumnHolder extends BaseRecyclerHolder<ColumnEntity> {
         View mLayout = $(R.id.item_layout);
         mImage = $(R.id.img_item);
         mText = $(R.id.tv_text);
-        measure(mLayout, 150, 200);
-        measure(mImage, 150, 200);
+        measure(mImage, 350, 450);
+        measure(mLayout, 350, 450);
     }
 
     @Override
     public void setData(ColumnEntity mData) {
-        GlideUtils.loadUriNetImg(getContext(), mData.getThumb(), mImage);
+        GlideUtils.loadUriNetImg(getContext(), mData.getThumb(), mImage, R.mipmap.ic_default_cover);
         mText.setText(mData.getName());
     }
 }

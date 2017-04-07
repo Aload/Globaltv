@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.autism.baselibs.EventBusLogicUtils;
+import com.autism.baselibs.view.refresh.SpringView;
+import com.autism.baselibs.view.refresh.container.MeituanFooter;
+import com.autism.baselibs.view.refresh.container.MeituanHeader;
 import com.autism.globaltv.R;
 import com.autism.logiclibs.UiUtils;
 
@@ -16,7 +19,7 @@ import com.autism.logiclibs.UiUtils;
  * Author：autism on 2017/4/1 11:26
  * Used:GlobalTv base fragment
  */
-public abstract class BaseFra<T extends IPresenter> extends Fragment {
+public abstract class BaseFra<T extends IPresenter> extends Fragment implements SpringView.OnFreshListener {
     protected T mPresenter;
     protected static final String TAG = BaseFra.class.getSimpleName();
     protected TextView mTvTitle;
@@ -31,6 +34,7 @@ public abstract class BaseFra<T extends IPresenter> extends Fragment {
     protected View mViewTitleRight;
     protected View mViewTitleRight1;
     protected View mViewStatusBar;
+    protected SpringView mRefresh;
 
     @Nullable
     @Override
@@ -39,14 +43,15 @@ public abstract class BaseFra<T extends IPresenter> extends Fragment {
         onInitFraView(mView);
         onVariable();
         EventBusLogicUtils.registerBus(this);
+        mPresenter = getPresenter();
+        if (null != mPresenter) mPresenter.attachView();
         return mView;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mPresenter = getPresenter();
-        if (null != mPresenter) mPresenter.attachView();
+
     }
 
     protected abstract T getPresenter();
@@ -75,7 +80,13 @@ public abstract class BaseFra<T extends IPresenter> extends Fragment {
      * @param mView
      */
     protected void onInitFraView(View mView) {
-
+        mRefresh = (SpringView) mView.findViewById(R.id.refresh_sp);
+        if (null != mRefresh) {
+            mRefresh.setListener(this);
+            mRefresh.setType(SpringView.Type.FOLLOW);
+            mRefresh.setHeader(new MeituanHeader(getActivity()));
+            mRefresh.setFooter(new MeituanFooter(getActivity()));
+        }
     }
 
     protected abstract int getReLayoutFraID();
@@ -123,7 +134,7 @@ public abstract class BaseFra<T extends IPresenter> extends Fragment {
     protected void setTitleLeftIcon(int resId, View.OnClickListener listener) {
         if (null != mTvTitleLeft) {
             mTvTitleLeft.setBackgroundResource(resId);
-            measure(mTvTitleLeft, 0, 75);
+            measure(mTvTitleLeft, 150, 75);
         }
         if (null != listener & null != mViewTitleLeft) {
             mViewTitleLeft.setOnClickListener(listener);
@@ -166,5 +177,15 @@ public abstract class BaseFra<T extends IPresenter> extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         EventBusLogicUtils.unRegisterBus(this);
+    }
+
+    @Override
+    public void onRefresh() {
+
+    }
+
+    @Override
+    public void onLoadmore() {
+
     }
 }

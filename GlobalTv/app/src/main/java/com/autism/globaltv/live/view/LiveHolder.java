@@ -1,5 +1,6 @@
 package com.autism.globaltv.live.view;
 
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,17 +22,21 @@ public class LiveHolder extends BaseRecyclerHolder<LiveEntity.DataBeanX> {
         super(parent, res);
         mImage = $(R.id.live_img);
         mNum = $(R.id.live_num);
+        View mContain = $(R.id.live_item_content);
+        measure(mContain, 500, 250);
         mLiveHeader = $(R.id.img_header);
         mLiveName = $(R.id.liver_name);
         mLiveContent = $(R.id.liver_content);
+        measure(mImage, 500, 250);
+        measure(mLiveHeader, 92, 92);
     }
 
     @Override
     public void setData(LiveEntity.DataBeanX mData) {
-        GlideUtils.loadUriNetImg(getContext(), mData.getApp_shuffling_image(), mImage);
-        GlideUtils.loadCirleImg(getContext(), mData.getAvatar(), mLiveHeader);
-        mNum.setText(mData.getFollow());
+        GlideUtils.loadRoundNetImg(getContext(), mData.getThumb(), mImage, R.mipmap.ic_default_cover);
+        GlideUtils.loadCirleImg(getContext(), mData.getAvatar(), mLiveHeader, R.mipmap.ic_default_head);
+        mNum.setText(mData.getView());
         mLiveName.setText(mData.getNick());
-        mLiveContent.setText(mData.getIntro());
+        mLiveContent.setText(mData.getTitle());
     }
 }

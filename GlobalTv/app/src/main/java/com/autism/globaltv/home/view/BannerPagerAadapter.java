@@ -47,7 +47,7 @@ public class BannerPagerAadapter extends PagerAdapter {
                 , ViewGroup.LayoutParams.MATCH_PARENT);
         webImageView.setImageResource(R.mipmap.logo);
         BannerEntity.AppfocusBean banner = banners.get(position);
-        GlideUtils.loadUriNetImg(mContext, banner.getThumb(), webImageView);
+        GlideUtils.loadUriNetImg(mContext, banner.getThumb(), webImageView, R.mipmap.ic_default_cover);
         webImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         container.addView(webImageView, layoutParams);
         return webImageView;

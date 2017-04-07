@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <include layout="@layout/view_title_layout" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/column_recycler"
+    <com.autism.baselibs.view.refresh.SpringView
+        android:id="@+id/refresh_sp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/column_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.autism.baselibs.view.refresh.SpringView>
 </LinearLayout>
