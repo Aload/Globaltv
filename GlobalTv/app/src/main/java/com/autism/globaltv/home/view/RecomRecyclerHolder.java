@@ -1,6 +1,5 @@
 package com.autism.globaltv.home.view;
 
-import android.support.annotation.IdRes;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -18,21 +17,22 @@ import com.autism.globaltv.home.pre.RecommonItemAdapter;
  */
 public class RecomRecyclerHolder extends BaseRecyclerHolder<HomeEntity.RoomBean> {
     private TextView mTitle;
-    private RecyclerView mRecycler;
+    private RecommonItemAdapter recommonItemAdapter;
 
     public RecomRecyclerHolder(ViewGroup parent) {
         super(parent, R.layout.recommon_item);
         mTitle = $(R.id.item_title);
-        mRecycler = $(R.id.child_recycler);
+        RecyclerView mRecycler = $(R.id.child_recycler);
         View mLayout = $(R.id.title_layout);
         measure(mLayout, 0, 160);
+        mRecycler.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        recommonItemAdapter = new RecommonItemAdapter();
+        mRecycler.setAdapter(recommonItemAdapter);
     }
 
     @Override
     public void setData(HomeEntity.RoomBean mData) {
         mTitle.setText(mData.getName());
-        mRecycler.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        RecommonItemAdapter recommonItemAdapter = new RecommonItemAdapter(mData.getList());
-        mRecycler.setAdapter(recommonItemAdapter);
+        recommonItemAdapter.notifyItemUi(mData.getList());
     }
 }

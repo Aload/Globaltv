@@ -13,28 +13,24 @@ import java.util.List;
  * Author：i5 on 2017/4/5 14:42
  * Used:GlobalTv
  */
-public class RecomRecyclerAdapter extends RecyclerView.Adapter<BaseRecyclerHolder<HomeEntity.RoomBean>> {
+public class RecomRecyclerAdapter extends RecyclerView.Adapter<RecomRecyclerHolder> {
 
-    private List<HomeEntity.RoomBean> mBeanList;
+    private HomeEntity mBeanList;
 
-    public RecomRecyclerAdapter(List<HomeEntity.RoomBean> mBeanList) {
-        this.mBeanList = mBeanList;
+    @Override
+    public RecomRecyclerHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new RecomRecyclerHolder(parent);
     }
 
     @Override
-    public BaseRecyclerHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        RecomRecyclerHolder recomRecyclerHolder = new RecomRecyclerHolder(parent);
-        return recomRecyclerHolder;
-    }
-
-    @Override
-    public void onBindViewHolder(BaseRecyclerHolder holder, int position) {
-        holder.setData(mBeanList.get(position));
+    public void onBindViewHolder(RecomRecyclerHolder holder, int position) {
+        List<HomeEntity.RoomBean> room = mBeanList.getRoom();
+        holder.setData(room.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return null == mBeanList ? 0 : mBeanList.size();
+        return null == mBeanList ? 0 : mBeanList.getRoom().size();
     }
 
     /**
@@ -42,8 +38,8 @@ public class RecomRecyclerAdapter extends RecyclerView.Adapter<BaseRecyclerHolde
      *
      * @param mData
      */
-    public void notifyUi(List<HomeEntity.RoomBean> mData) {
-        if (null == mData && mData.isEmpty()) {
+    public void notifyUi(HomeEntity mData) {
+        if (null == mData) {
             return;
         }
         this.mBeanList = mData;

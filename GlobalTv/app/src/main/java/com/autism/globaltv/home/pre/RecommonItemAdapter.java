@@ -17,10 +17,6 @@ import java.util.List;
 public class RecommonItemAdapter extends RecyclerView.Adapter<BaseRecyclerHolder<HomeEntity.RoomBean.ListBean>> {
     private List<HomeEntity.RoomBean.ListBean> mListData;
 
-    public RecommonItemAdapter(List<HomeEntity.RoomBean.ListBean> mListData) {
-        this.mListData = mListData;
-    }
-
     @Override
     public BaseRecyclerHolder<HomeEntity.RoomBean.ListBean> onCreateViewHolder(ViewGroup parent, int viewType) {
         return new RecommonItemHolder(parent, R.layout.recommon_child_item);
@@ -36,6 +32,11 @@ public class RecommonItemAdapter extends RecyclerView.Adapter<BaseRecyclerHolder
         return null == mListData ? 0 : mListData.size();
     }
 
+    /**
+     * 刷新Ui
+     *
+     * @param mData
+     */
     public void notifyItemUi(List<HomeEntity.RoomBean.ListBean> mData) {
         if (null == mData && mData.isEmpty()) {
             return;

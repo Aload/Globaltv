@@ -31,6 +31,7 @@ public class HomeAct extends BaseAct implements RadioGroup.OnCheckedChangeListen
 
     @Override
     protected void onInitViews() {
+        super.initTitle();
         mPager = (NoScollViewPager) findViewById(R.id.fl_contain);
         HomeFraPager homeFraPager = new HomeFraPager(getSupportFragmentManager());
         mPager.setOffscreenPageLimit(3);
@@ -61,14 +62,18 @@ public class HomeAct extends BaseAct implements RadioGroup.OnCheckedChangeListen
         switch (checkedId) {
             case R.id.rb_1:
                 mPager.setCurrentItem(0, false);
+                showTitleBar(true);
                 break;
             case R.id.rb_2:
                 mPager.setCurrentItem(1, false);
+                showTitleBar(true);
                 break;
             case R.id.rb_3:
+                showTitleBar(true);
                 mPager.setCurrentItem(2, false);
                 break;
             case R.id.rb_4:
+                showTitleBar(false);
                 mPager.setCurrentItem(3, false);
                 break;
         }

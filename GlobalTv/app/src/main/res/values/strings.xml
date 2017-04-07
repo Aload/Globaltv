@@ -18,4 +18,7 @@
     <string name="my_room_manage" translatable="false">房间管理</string>
     <string name="my_task">种子任务</string>
     <string name="buffering">正在缓冲...</string>
+    <string name="tuijian">推荐</string>
+    <string name="dingyue">订阅</string>
+    <string name="all">全部</string>
 </resources>

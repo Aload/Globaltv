@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.autism.baselibs.EventBusLogicUtils;
@@ -20,20 +21,15 @@ import com.autism.logiclibs.UiUtils;
  * Used:GlobalTv base fragment
  */
 public abstract class BaseFra<T extends IPresenter> extends Fragment implements SpringView.OnFreshListener {
-    protected T mPresenter;
     protected static final String TAG = BaseFra.class.getSimpleName();
-    protected TextView mTvTitle;
-    protected TextView mTvTitleLeft;
-    protected TextView mTvTitleLeft1;
-    protected TextView mTvTitleRight;
-    protected TextView mTvTitleRight1;
-    protected View mViewTitle;
+
+    protected ImageView mTvTitleLeft;
+    protected ImageView mTvTitleRight;
     protected View mViewDivider;
-    private View mViewTitleLeft;
-    protected View mViewTitleLeft1;
     protected View mViewTitleRight;
-    protected View mViewTitleRight1;
-    protected View mViewStatusBar;
+    protected T mPresenter;
+    private TextView mTitle;
+
     protected SpringView mRefresh;
 
     @Nullable
@@ -43,15 +39,14 @@ public abstract class BaseFra<T extends IPresenter> extends Fragment implements 
         onInitFraView(mView);
         onVariable();
         EventBusLogicUtils.registerBus(this);
-        mPresenter = getPresenter();
-        if (null != mPresenter) mPresenter.attachView();
         return mView;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        mPresenter = getPresenter();
+        if (null != mPresenter) mPresenter.attachView();
     }
 
     protected abstract T getPresenter();
@@ -97,32 +92,13 @@ public abstract class BaseFra<T extends IPresenter> extends Fragment implements 
      * @param mView
      */
     protected void initTitle(View mView) {
-        mViewTitle = mView.findViewById(R.id.view_title);
-        mViewDivider = mView.findViewById(R.id.view_divider);
-        mViewStatusBar = mView.findViewById(R.id.view_status_bar);
-        if (null != mViewTitle) {
-            measure(mViewTitle, 0, 168);
-            mViewTitleLeft = mView.findViewById(R.id.ll_title_left);
-            mViewTitleLeft1 = mView.findViewById(R.id.ll_title_left_1);
-            mViewTitleRight = mView.findViewById(R.id.ll_title_right);
-            mViewTitleRight1 = mView.findViewById(R.id.ll_title_right1);
-            mTvTitle = (TextView) mView.findViewById(R.id.tv_title_mid);
-            mTvTitleLeft = (TextView) mView.findViewById(R.id.tv_title_left);
-            mTvTitleLeft1 = (TextView) mView.findViewById(R.id.tv_title_left_1);
-            mTvTitleRight = (TextView) mView.findViewById(R.id.tv_title_right);
-            mTvTitleRight1 = (TextView) mView.findViewById(R.id.tv_title_right_1);
-        }
-    }
-
-    /**
-     * 设置文字
-     *
-     * @param title
-     */
-    protected void setTitleText(String title) {
-        if (null != mTvTitle) {
-            mTvTitle.setText(title);
-        }
+        View mTitleLayout = mView.findViewById(R.id.title_layout);
+        if (null == mTitleLayout) return;
+        measure(mTitleLayout, 0, 168);
+        mTvTitleLeft = (ImageView) mView.findViewById(R.id.left_img);
+        mTitle = (TextView) mView.findViewById(R.id.title_txt);
+        mTvTitleRight = (ImageView) mView.findViewById(R.id.right_img);
+        mViewDivider = mView.findViewById(R.id.title_divider);
     }
 
     /**
@@ -136,8 +112,8 @@ public abstract class BaseFra<T extends IPresenter> extends Fragment implements 
             mTvTitleLeft.setBackgroundResource(resId);
             measure(mTvTitleLeft, 150, 75);
         }
-        if (null != listener & null != mViewTitleLeft) {
-            mViewTitleLeft.setOnClickListener(listener);
+        if (null != listener & null != mTvTitleLeft) {
+            mTvTitleLeft.setOnClickListener(listener);
         }
     }
 

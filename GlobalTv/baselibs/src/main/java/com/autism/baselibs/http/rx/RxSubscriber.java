@@ -2,7 +2,6 @@ package com.autism.baselibs.http.rx;
 
 import android.app.Activity;
 
-import com.autism.baselibs.utils.LogUtil;
 
 import rx.Subscriber;
 
@@ -25,14 +24,13 @@ public class RxSubscriber<T> extends Subscriber<T> {
 
     @Override
     public void onError(Throwable e) {
-        LogUtil.d(getClass().getName(), "RxSubscriber异常：" + e.toString());
         e.printStackTrace();
     }
 
     @Override
     public void onNext(T t) {
-        if (null == t) {
-            _onError("数据异常");
+        if (t == null) {
+            _onError(0);
         } else _onNext(t);
     }
 
@@ -40,7 +38,11 @@ public class RxSubscriber<T> extends Subscriber<T> {
 
     }
 
-    public void _onError(String t) {
+    public void _onError(int code, T t) {
+        _onError(code);
+    }
+
+    public void _onError(int code) {
 
     }
 

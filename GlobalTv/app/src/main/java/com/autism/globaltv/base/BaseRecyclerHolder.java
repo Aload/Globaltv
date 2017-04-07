@@ -15,10 +15,6 @@ import com.autism.logiclibs.UiUtils;
  */
 public abstract class BaseRecyclerHolder<M> extends RecyclerView.ViewHolder {
 
-    public BaseRecyclerHolder(View itemView) {
-        super(itemView);
-    }
-
     public BaseRecyclerHolder(ViewGroup parent, int res) {
         super(LayoutInflater.from(parent.getContext()).inflate(res, parent, false));
     }

@@ -2,7 +2,11 @@ package com.autism.globaltv.home.model.api;
 
 import com.autism.baselibs.http.RetrofitManager;
 import com.autism.baselibs.http.rx.RxUtil;
+import com.autism.globaltv.home.model.BannerEntity;
+import com.autism.globaltv.home.model.HomeEntity;
 import com.google.gson.JsonObject;
+
+import java.util.List;
 
 import retrofit2.Retrofit;
 import rx.Subscriber;
@@ -28,11 +32,11 @@ public class HomeReq {
     }
 
     /**
-     * 获取首页的数据
+     * 获取首页的推荐数据
      *
      * @param subscriber
      */
-    public void getHomeData(Subscriber<JsonObject> subscriber) {
+    public void getRecommonData(Subscriber<JsonObject> subscriber) {
         mHomeApi.getRecommendCategories()
                 .compose(RxUtil.<JsonObject>ioMain())
                 .subscribe(subscriber);
@@ -43,9 +47,9 @@ public class HomeReq {
      *
      * @param subscriber
      */
-    public void getBannerData(Subscriber<JsonObject> subscriber) {
+    public void getBannerData(Subscriber<BannerEntity> subscriber) {
         mHomeApi.getAppStartInfo()
-                .compose(RxUtil.<JsonObject>ioMain())
+                .compose(RxUtil.<BannerEntity>ioMain())
                 .subscribe(subscriber);
     }
 }

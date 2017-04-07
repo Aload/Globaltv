@@ -22,7 +22,7 @@ public abstract class BasePagerHolder<T> {
 
     public abstract void onInitView(View mView);
 
-    public void setData(T mData, List<BannerEntity.AppfocusBean> mBannerList) {
+    public void setData(T mData) {
 
     }
 

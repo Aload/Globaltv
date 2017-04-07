@@ -5,25 +5,35 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/title_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center">
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <View
-            android:layout_width="1dp"
-            android:layout_height="10dp"
+            android:layout_width="50dp"
+            android:layout_height="2dp"
             android:layout_centerVertical="true"
-            android:background="@color/reb_change" />
+            android:layout_marginLeft="@dimen/dp_100"
+            android:background="@color/green" />
 
         <TextView
             android:id="@+id/item_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:padding="@dimen/dp_10"
             android:text="王者"
             android:textColor="@color/main_black"
             android:textSize="@dimen/size_1" />
+
+        <View
+            android:layout_width="50dp"
+            android:layout_height="2dp"
+            android:layout_centerVertical="true"
+            android:background="@color/green" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -35,7 +45,7 @@
             android:paddingRight="10.0dip"
             android:text="瞅瞅"
             android:textSize="@dimen/size_4" />
-    </RelativeLayout>
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"

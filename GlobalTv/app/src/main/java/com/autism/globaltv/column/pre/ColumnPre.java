@@ -30,8 +30,8 @@ public class ColumnPre extends BasePresenter<ColumnView> {
             }
 
             @Override
-            public void _onError(String code) {
-                mView.onFailed(code);
+            public void _onError(int code) {
+                mView.onFailed("");
             }
         };
         ColumnReq.getInstance().getColumnData(subscriber);

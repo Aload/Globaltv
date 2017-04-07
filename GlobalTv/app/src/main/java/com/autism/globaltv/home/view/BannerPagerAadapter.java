@@ -1,6 +1,5 @@
 package com.autism.globaltv.home.view;
 
-import android.app.Activity;
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
@@ -13,26 +12,24 @@ import com.autism.globaltv.home.model.BannerEntity;
 
 import java.util.List;
 
+import static android.R.attr.banner;
+
 /**
  * @author autism
  */
 public class BannerPagerAadapter extends PagerAdapter {
 
     private Context mContext;
-    private List<BannerEntity.AppfocusBean> banners;
+    private BannerEntity banners;
 
-    public BannerPagerAadapter(Context mContext, List<BannerEntity.AppfocusBean> banners) {
-        this.banners = banners;
+    public BannerPagerAadapter(Context mContext, BannerEntity mDate) {
         this.mContext = mContext;
-
+        this.banners = mDate;
     }
 
     @Override
     public int getCount() {
-        if (banners != null && !banners.isEmpty()) {
-            return banners.size();
-        }
-        return 0;
+        return null == banners ? 0 : banners.getBanners().size();
     }
 
     @Override
@@ -46,8 +43,8 @@ public class BannerPagerAadapter extends PagerAdapter {
         ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT
                 , ViewGroup.LayoutParams.MATCH_PARENT);
         webImageView.setImageResource(R.mipmap.logo);
-        BannerEntity.AppfocusBean banner = banners.get(position);
-        GlideUtils.loadUriNetImg(mContext, banner.getThumb(), webImageView, R.mipmap.ic_default_cover);
+        BannerEntity.BannersBean bannersBean = banners.getBanners().get(position);
+        GlideUtils.loadUriNetImg(mContext, bannersBean.getImg(), webImageView, R.mipmap.ic_default_cover);
         webImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         container.addView(webImageView, layoutParams);
         return webImageView;
@@ -57,5 +54,4 @@ public class BannerPagerAadapter extends PagerAdapter {
     public void destroyItem(ViewGroup container, int position, Object object) {
         container.removeView((View) object);
     }
-
 }

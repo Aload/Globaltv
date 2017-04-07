@@ -32,8 +32,8 @@ public class PlayerPre extends BasePresenter<LiveView> {
             }
 
             @Override
-            public void _onError(String code) {
-                mView.onFailed(code);
+            public void _onError(int code) {
+                mView.onFailed("");
             }
         };
         LiveReq.getInstance().getLiveData(subscriber);

@@ -27,7 +27,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitManager {
     public static String PLAYERBASE = "http://www.quanmin.tv";
     private static Retrofit mRetrofit;
-    private static final String TAG = RetrofitManager.class.getSimpleName();
 
     public static Retrofit getRetrofit() {
         return getRetrofit(getHost());
@@ -88,7 +87,6 @@ public class RetrofitManager {
                 request = request.newBuilder()
                         .cacheControl(CacheControl.FORCE_CACHE)
                         .build();
-                LogUtil.d(TAG, "no network");
             }
             Response originalResponse = chain.proceed(request);
             if (NetStatusUtil.isConnectToNet(AsynBase.getAsynContext())) {

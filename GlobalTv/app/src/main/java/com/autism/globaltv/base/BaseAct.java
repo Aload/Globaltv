@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.autism.baselibs.EventBusLogicUtils;
@@ -22,19 +23,13 @@ import java.util.List;
 public abstract class BaseAct<T extends IPresenter> extends AppCompatActivity {
 
 
-    protected TextView mTvTitle;
-    protected TextView mTvTitleLeft;
-    protected TextView mTvTitleLeft1;
-    protected TextView mTvTitleRight;
-    protected TextView mTvTitleRight1;
-    protected View mViewTitle;
+    protected ImageView mTvTitleLeft;
+    protected ImageView mTvTitleRight;
     protected View mViewDivider;
-    private View mViewTitleLeft;
-    protected View mViewTitleLeft1;
     protected View mViewTitleRight;
-    protected View mViewTitleRight1;
-    protected View mViewStatusBar;
     protected T mPresenter;
+    private TextView mTitle;
+    private View mTitleLayout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,21 +62,37 @@ public abstract class BaseAct<T extends IPresenter> extends AppCompatActivity {
     protected abstract int getRelayoutID();
 
     protected void initTitle() {
-        mViewTitle = findViewById(R.id.view_title);
-        mViewDivider = findViewById(R.id.view_divider);
-        mViewStatusBar = findViewById(R.id.view_status_bar);
-        if (null != mViewTitle) {
-            measure(mViewTitle, 0, 168);
-            mViewTitleLeft = findViewById(R.id.ll_title_left);
-            mViewTitleLeft1 = findViewById(R.id.ll_title_left_1);
-            mViewTitleRight = findViewById(R.id.ll_title_right);
-            mViewTitleRight1 = findViewById(R.id.ll_title_right1);
-            mTvTitle = (TextView) findViewById(R.id.tv_title_mid);
-            mTvTitleLeft = (TextView) findViewById(R.id.tv_title_left);
-            mTvTitleLeft1 = (TextView) findViewById(R.id.tv_title_left_1);
-            mTvTitleRight = (TextView) findViewById(R.id.tv_title_right);
-            mTvTitleRight1 = (TextView) findViewById(R.id.tv_title_right_1);
-        }
+        mTitleLayout = findViewById(R.id.title_layout);
+        if (null == mTitleLayout) return;
+        measure(mTitleLayout, 0, 168);
+        mTvTitleLeft = (ImageView) findViewById(R.id.left_img);
+        mTitle = (TextView) findViewById(R.id.title_txt);
+        mTvTitleRight = (ImageView) findViewById(R.id.right_img);
+        mViewDivider = findViewById(R.id.title_divider);
+    }
+
+    /**
+     * 是否显示标题
+     *
+     * @param isShown
+     */
+    protected void showTitleBar(boolean isShown) {
+        if (mTitleLayout == null) return;
+        if (isShown) {
+            mTitleLayout.setVisibility(View.VISIBLE);
+        } else mTitleLayout.setVisibility(View.GONE);
+    }
+
+    /**
+     * 设置标题
+     *
+     * @param msg
+     * @param res
+     */
+    protected void setTitleText(String msg, int res) {
+        if (res != 0) {
+            mTitle.setBackgroundResource(res);
+        } else mTitle.setText(msg);
     }
 
     /**
@@ -106,8 +117,8 @@ public abstract class BaseAct<T extends IPresenter> extends AppCompatActivity {
             mTvTitleLeft.setBackgroundResource(resId);
             measure(mTvTitleLeft, 92, 92);
         }
-        if (null != listener & null != mViewTitleLeft) {
-            mViewTitleLeft.setOnClickListener(listener);
+        if (null != listener & null != mTvTitleLeft) {
+            mTvTitleLeft.setOnClickListener(listener);
         }
     }
 
