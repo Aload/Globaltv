@@ -29,6 +29,7 @@ public class RecommonItemHolder extends BaseRecyclerHolder<HomeEntity.RoomBean.L
         measure(mImageBg, 500, 300);
         measure(mContainer, 500, 300);
         measure(mHeaderImg, 92, 92);
+        measure(mTitle_02, 400, 0);
     }
 
     @Override
@@ -37,6 +38,6 @@ public class RecommonItemHolder extends BaseRecyclerHolder<HomeEntity.RoomBean.L
         mTitle_02.setText(mData.getTitle());
         mNum.setText(mData.getView());
         GlideUtils.loadCirleImg(getContext(), mData.getAvatar(), mHeaderImg, R.mipmap.ic_default_head);
-        GlideUtils.loadUriNetImg(getContext(), mData.getThumb(), mImageBg, R.mipmap.ic_default_cover);
+        GlideUtils.loadRoundNetImg(getContext(), mData.getThumb(), mImageBg, R.mipmap.ic_default_cover);
     }
 }

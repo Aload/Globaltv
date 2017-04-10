@@ -20,7 +20,7 @@ import com.autism.globaltv.home.view.SuperManager;
  * Author：Autism on 2017/4/1 15:09
  * Used:GlobalTv
  */
-public class HomeAct extends BaseAct implements RadioGroup.OnCheckedChangeListener, ViewPager.OnPageChangeListener {
+public class HomeAct extends BaseAct implements RadioGroup.OnCheckedChangeListener, ViewPager.OnPageChangeListener, View.OnClickListener {
     private RadioButton mRbHome, mRbPlayer, mRbColumn, mRbMine;
     private NoScollViewPager mPager;
 
@@ -32,6 +32,8 @@ public class HomeAct extends BaseAct implements RadioGroup.OnCheckedChangeListen
     @Override
     protected void onInitViews() {
         super.initTitle();
+        setTitleLeftIcon(R.mipmap.img_rec_logo, null);
+        setTitleRightIcon(R.drawable.btn_search_selector, this);
         mPager = (NoScollViewPager) findViewById(R.id.fl_contain);
         HomeFraPager homeFraPager = new HomeFraPager(getSupportFragmentManager());
         mPager.setOffscreenPageLimit(3);
@@ -42,7 +44,7 @@ public class HomeAct extends BaseAct implements RadioGroup.OnCheckedChangeListen
         mRbPlayer = (RadioButton) findViewById(R.id.rb_2);
         mRbColumn = (RadioButton) findViewById(R.id.rb_3);
         mRbMine = (RadioButton) findViewById(R.id.rb_4);
-        measure(rgGroup, 0, 160);
+        measure(rgGroup, 0, 140);
         measure(mRbHome, 120, 120);
         measure(mRbPlayer, 120, 120);
         measure(mRbColumn, 120, 120);
@@ -66,10 +68,10 @@ public class HomeAct extends BaseAct implements RadioGroup.OnCheckedChangeListen
                 break;
             case R.id.rb_2:
                 mPager.setCurrentItem(1, false);
-                showTitleBar(true);
+                showTitleBar(false);
                 break;
             case R.id.rb_3:
-                showTitleBar(true);
+                showTitleBar(false);
                 mPager.setCurrentItem(2, false);
                 break;
             case R.id.rb_4:
@@ -91,6 +93,11 @@ public class HomeAct extends BaseAct implements RadioGroup.OnCheckedChangeListen
 
     @Override
     public void onPageScrollStateChanged(int state) {
+
+    }
+
+    @Override
+    public void onClick(View v) {
 
     }
 }

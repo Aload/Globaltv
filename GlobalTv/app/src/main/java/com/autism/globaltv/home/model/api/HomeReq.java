@@ -47,9 +47,9 @@ public class HomeReq {
      *
      * @param subscriber
      */
-    public void getBannerData(Subscriber<BannerEntity> subscriber) {
+    public void getBannerData(Subscriber<JsonObject> subscriber) {
         mHomeApi.getAppStartInfo()
-                .compose(RxUtil.<BannerEntity>ioMain())
+                .compose(RxUtil.<JsonObject>ioMain())
                 .subscribe(subscriber);
     }
 }

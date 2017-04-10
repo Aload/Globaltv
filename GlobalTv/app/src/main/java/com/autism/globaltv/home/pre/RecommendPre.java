@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import com.autism.baselibs.http.rx.RxSubscriber;
 import com.autism.globaltv.base.BasePresenter;
+import com.autism.globaltv.home.model.BannerEntity;
 import com.autism.globaltv.home.model.HomeEntity;
 import com.autism.globaltv.home.model.api.HomeReq;
 import com.autism.globaltv.home.view.RecommendView;
@@ -23,7 +24,7 @@ public class RecommendPre extends BasePresenter<RecommendView> {
 
     @Override
     public void attachView() {
-//        onBannerData();
+        onBannerData();
         Subscriber<JsonObject> subscriber = new RxSubscriber<JsonObject>(mActivity) {
 
             @Override
@@ -45,21 +46,23 @@ public class RecommendPre extends BasePresenter<RecommendView> {
     }
 
     private void onBannerData() {
-//        Subscriber<ResultBean<BannerEntity>> subscriber = new RxSubscriber<BannerEntity>(mActivity) {
-//
-//            @Override
-//            public void _onNext(BannerEntity homeEntities) {
-//                super._onNext(homeEntities);
-//                mView.onBannerSuccess(homeEntities);
-//            }
-//
-//            @Override
-//            public void _onError(int code) {
-//                super._onError(code);
-//                mView.onRecommonFailed("异常数据");
-//            }
-//        };
-//        HomeReq.getInstance().getBannerData(subscriber);
-//        addSubscrebe(subscriber);
+        Subscriber<JsonObject> subscriber = new RxSubscriber<JsonObject>(mActivity) {
+
+            @Override
+            public void _onNext(JsonObject homeEntities) {
+                super._onNext(homeEntities);
+                Gson gson = new Gson();
+                BannerEntity bannerEntity = gson.fromJson(homeEntities, BannerEntity.class);
+                mView.onBannerSuccess(bannerEntity);
+            }
+
+            @Override
+            public void _onError(int code) {
+                super._onError(code);
+                mView.onRecommonFailed("异常数据");
+            }
+        };
+        HomeReq.getInstance().getBannerData(subscriber);
+        addSubscrebe(subscriber);
     }
 }

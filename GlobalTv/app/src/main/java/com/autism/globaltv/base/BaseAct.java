@@ -115,7 +115,7 @@ public abstract class BaseAct<T extends IPresenter> extends AppCompatActivity {
     protected void setTitleLeftIcon(int resId, View.OnClickListener listener) {
         if (null != mTvTitleLeft) {
             mTvTitleLeft.setBackgroundResource(resId);
-            measure(mTvTitleLeft, 92, 92);
+            measure(mTvTitleLeft, 0, 92);
         }
         if (null != listener & null != mTvTitleLeft) {
             mTvTitleLeft.setOnClickListener(listener);

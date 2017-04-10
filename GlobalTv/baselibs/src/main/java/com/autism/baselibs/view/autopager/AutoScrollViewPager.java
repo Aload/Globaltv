@@ -15,7 +15,6 @@ import android.view.animation.Interpolator;
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
 
-// TODO add attr support?
 public class AutoScrollViewPager extends ViewPager implements ViewPager.PageTransformer {
 
     public interface OnPageClickListener {

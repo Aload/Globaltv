@@ -17,19 +17,19 @@ import static android.R.attr.banner;
 /**
  * @author autism
  */
-public class BannerPagerAadapter extends PagerAdapter {
+public class BannerPagerAdapter extends PagerAdapter {
 
     private Context mContext;
     private BannerEntity banners;
 
-    public BannerPagerAadapter(Context mContext, BannerEntity mDate) {
+    public BannerPagerAdapter(Context mContext, BannerEntity mDate) {
         this.mContext = mContext;
         this.banners = mDate;
     }
 
     @Override
     public int getCount() {
-        return null == banners ? 0 : banners.getBanners().size();
+        return null == banners ? 0 : banners.getAndroidfocus().size();
     }
 
     @Override
@@ -42,9 +42,8 @@ public class BannerPagerAadapter extends PagerAdapter {
         ImageView webImageView = new ImageView(mContext);
         ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT
                 , ViewGroup.LayoutParams.MATCH_PARENT);
-        webImageView.setImageResource(R.mipmap.logo);
-        BannerEntity.BannersBean bannersBean = banners.getBanners().get(position);
-        GlideUtils.loadUriNetImg(mContext, bannersBean.getImg(), webImageView, R.mipmap.ic_default_cover);
+        BannerEntity.AndroidfocusBean androidfocusBean = banners.getAndroidfocus().get(position);
+        GlideUtils.loadUriNetImg(mContext, androidfocusBean.getThumb(), webImageView, R.mipmap.ic_default_cover);
         webImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         container.addView(webImageView, layoutParams);
         return webImageView;

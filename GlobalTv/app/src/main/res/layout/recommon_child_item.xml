@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/img_layout"
-    android:layout_width="200dp"
-    android:layout_height="200dp"
-    android:orientation="vertical">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/dp_5">
 
     <RelativeLayout
         android:id="@+id/item_container"
@@ -22,10 +23,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:padding="@dimen/dp_2"
-            android:drawableLeft="@mipmap/ic_player_content_number"
             android:layout_margin="@dimen/dp_10"
             android:background="@drawable/num_bg"
+            android:drawableLeft="@mipmap/ic_player_content_number"
+            android:padding="@dimen/dp_2"
             android:textColor="@color/white"
             android:textSize="@dimen/size_5" />
     </RelativeLayout>
@@ -61,9 +62,6 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/size_5" />
-
-
         </LinearLayout>
-
     </LinearLayout>
 </LinearLayout>
