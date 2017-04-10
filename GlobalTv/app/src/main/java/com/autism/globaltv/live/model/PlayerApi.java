@@ -11,6 +11,9 @@ import rx.Observable;
  * Used:GlobalTv
  */
 public interface PlayerApi {
-    @GET("{url}?11211639&os=1&v=2.2.4&os=1&ver=4")
+    @GET("{url}?04101632&v=3.1.1&os=1&ver=4&toid=0&token&sid")
     Observable<JsonObject> getPlayJson(@Path("url") String url);
+
+    @GET("json/rooms/{uid}/info1.json?04101635&v=3.1.1&os=1&ver=4&toid=0&token&sid ")
+    Observable<JsonObject> getPlayDetatilJson(@Path("uid") String uid);
 }

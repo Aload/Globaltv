@@ -40,7 +40,6 @@ public abstract class BaseAct<T extends IPresenter> extends AppCompatActivity {
         EventBusLogicUtils.registerBus(this);
         mPresenter = getPresenter();
         if (null != mPresenter) mPresenter.attachView();
-
     }
 
     /**

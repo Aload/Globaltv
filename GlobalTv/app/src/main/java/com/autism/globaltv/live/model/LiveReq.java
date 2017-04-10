@@ -41,4 +41,16 @@ public class LiveReq {
                 .compose(RxUtil.<JsonObject>ioMain())
                 .subscribe(subscriber);
     }
+
+    /**
+     * 进入直播间数据
+     *
+     * @param subscriber
+     * @param uid
+     */
+    public void getLiveDetailData(Subscriber<JsonObject> subscriber, String uid) {
+        mHomeApi.getPlayDetatilJson(uid)
+                .compose(RxUtil.<JsonObject>ioMain())
+                .subscribe(subscriber);
+    }
 }

@@ -12,6 +12,8 @@ import com.autism.baselibs.view.refresh.container.MeituanFooter;
 import com.autism.baselibs.view.refresh.container.MeituanHeader;
 import com.autism.globaltv.R;
 import com.autism.globaltv.base.BaseFra;
+import com.autism.globaltv.base.ViewUtils;
+import com.autism.globaltv.base.common.Config;
 import com.autism.globaltv.live.model.LiveEntity;
 import com.autism.globaltv.live.pre.PlayerPre;
 
@@ -19,7 +21,7 @@ import com.autism.globaltv.live.pre.PlayerPre;
  * Author：i5 on 2017/4/1 15:58
  * Used:GlobalTv
  */
-public class PlayerFra extends BaseFra<PlayerPre> implements LiveView {
+public class PlayerFra extends BaseFra<PlayerPre> implements LiveView, IOnItemClickListener {
     private LiveAdapter mLiveAdapter;
 
     @Override
@@ -34,6 +36,7 @@ public class PlayerFra extends BaseFra<PlayerPre> implements LiveView {
         mRecycler.setLayoutManager(new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false));
         mLiveAdapter = new LiveAdapter();
         mRecycler.setAdapter(mLiveAdapter);
+        mLiveAdapter.setOnItemClick(this);
     }
 
     @Override
@@ -66,5 +69,10 @@ public class PlayerFra extends BaseFra<PlayerPre> implements LiveView {
                 mRefresh.onFinishFreshAndLoad();
             }
         }, 2000);
+    }
+
+    @Override
+    public void itemClick(int position, LiveEntity.DataBeanX mData) {
+        ViewUtils.intentLefttoRightBundleInteger(getActivity(), LivePlayerAct.class, Config.ENTERUID, mData.getUid());
     }
 }

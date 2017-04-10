@@ -18,6 +18,21 @@ public class ViewUtils {
         right2LeftIn(mActivity);
     }
 
+    /**
+     * 携带int参数跳转
+     *
+     * @param mActivity
+     * @param mClazz
+     * @param key
+     * @param uid
+     */
+    public static void intentLefttoRightBundleInteger(Activity mActivity, Class mClazz, String key, String uid) {
+        Intent mIntent = new Intent(mActivity, mClazz);
+        mIntent.putExtra(key, uid);
+        mActivity.startActivity(mIntent);
+        right2LeftIn(mActivity);
+    }
+
     private static void right2LeftIn(Activity activity) {
         if (null == activity) {
             return;

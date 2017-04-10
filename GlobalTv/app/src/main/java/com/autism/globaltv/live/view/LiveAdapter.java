@@ -14,6 +14,7 @@ import java.util.List;
  */
 public class LiveAdapter extends RecyclerView.Adapter<LiveHolder> {
     private List<LiveEntity.DataBeanX> mData;
+    private IOnItemClickListener mOnItemClick;
 
     @Override
     public LiveHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -23,11 +24,21 @@ public class LiveAdapter extends RecyclerView.Adapter<LiveHolder> {
     @Override
     public void onBindViewHolder(LiveHolder holder, int position) {
         holder.setData(mData.get(position));
+        holder.setOnItemClick(mOnItemClick);
     }
 
     @Override
     public int getItemCount() {
         return null == mData ? 0 : mData.size();
+    }
+
+    /**
+     * 设置点击item点击事件
+     *
+     * @param onItemClick
+     */
+    public void setOnItemClick(IOnItemClickListener onItemClick) {
+        this.mOnItemClick = onItemClick;
     }
 
     /**

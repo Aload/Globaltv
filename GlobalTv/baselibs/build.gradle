@@ -43,4 +43,6 @@ dependencies {
 
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'jp.wasabeef:glide-transformations:2.0.1'
+    //客户端七牛
+    compile 'com.qiniu.pili:pili-android-qos:0.8.+'
 }

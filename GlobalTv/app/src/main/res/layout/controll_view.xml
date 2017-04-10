@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_controller"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@android:color/transparent"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
+
+            <CheckBox
+                android:id="@+id/cb_player"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/check_gift_switch"
+                android:layout_margin="5dp"
+                android:layout_weight="1.0"
+                android:button="@null"
+                android:checked="false"
+                android:drawableLeft="@mipmap/btn_live_pause"
+                tools:ignore="InefficientWeight,ObsoleteLayoutParam,RtlHardcoded" />
+
+            <TextView
+                android:id="@+id/tv_num"
+                android:layout_width="wrap_content"
+                android:layout_height="21.0dip"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="5.0dip"
+                android:background="@drawable/bg_live_ver_num"
+                android:clickable="true"
+                android:drawableLeft="@mipmap/ic_player_content_number"
+                android:drawablePadding="2.0dip"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:paddingBottom="6.0dip"
+                android:paddingLeft="7.0dip"
+                android:paddingRight="7.0dip"
+                android:paddingTop="3.0dip"
+                android:singleLine="true"
+                android:text="2255"
+                android:textColor="@color/white"
+                android:textSize="10.0sp"
+                tools:ignore="Deprecated,HardcodedText,ObsoleteLayoutParam,RtlHardcoded" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_fullscreen"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="5dp"
+            android:clickable="true"
+            android:src="@drawable/btn_fullscreen_selector"
+            tools:ignore="ContentDescription,RtlHardcoded" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_5">
+
+        <ImageView
+            android:id="@+id/iv_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="ContentDescription" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/main_black"
+                android:textSize="@dimen/size_3" />
+
+            <TextView
+                android:id="@+id/tv_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/size_5" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>
