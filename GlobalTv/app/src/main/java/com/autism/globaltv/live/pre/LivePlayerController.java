@@ -8,6 +8,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.autism.baselibs.utils.LogUtil;
+import com.autism.globaltv.live.view.IPlayerLifeCircle;
 import com.pili.pldroid.player.AVOptions;
 import com.pili.pldroid.player.PLMediaPlayer;
 
@@ -21,18 +22,17 @@ import java.io.IOException;
 public class LivePlayerController implements SurfaceHolder.Callback, PLMediaPlayer.OnPreparedListener, PLMediaPlayer.OnVideoSizeChangedListener, PLMediaPlayer.OnCompletionListener, PLMediaPlayer.OnErrorListener, PLMediaPlayer.OnInfoListener, PLMediaPlayer.OnBufferingUpdateListener {
     private final SurfaceView mSurfaceView;
     private final Activity mAct;
+    private final IPlayerLifeCircle mLifeCircle;
     private int mSurfaceHeight;
     private int mSurfaceWidth;
     private PLMediaPlayer mMediaPlayer;
     private static final String TAG = LivePlayerController.class.getSimpleName();
     private AVOptions mAVOptions;
-    public final static int MEDIA_CODEC_SW_DECODE = 0;
-    public final static int MEDIA_CODEC_HW_DECODE = 1;
-    public final static int MEDIA_CODEC_AUTO = 2;
     private boolean isNeedReconnect;
 
-    public LivePlayerController(Activity mActivity, SurfaceView mSurFacerView, int codec) {
+    public LivePlayerController(Activity mActivity, SurfaceView mSurFacerView, int codec, IPlayerLifeCircle mLifeCircle) {
         this.mSurfaceView = mSurFacerView;
+        this.mLifeCircle = mLifeCircle;
         this.mAct = mActivity;
         mSurFacerView.getHolder().addCallback(this);
         mAVOptions = new AVOptions();
@@ -93,6 +93,13 @@ public class LivePlayerController implements SurfaceHolder.Callback, PLMediaPlay
 
     }
 
+    /**
+     * 停止播放
+     */
+    public void setOnStopPlay() {
+        if (mMediaPlayer != null) mMediaPlayer.stop();
+    }
+
     private void prepare() {
         if (mMediaPlayer != null) {
             mMediaPlayer.setDisplay(mSurfaceView.getHolder());
@@ -131,6 +138,7 @@ public class LivePlayerController implements SurfaceHolder.Callback, PLMediaPlay
     @Override
     public void onPrepared(PLMediaPlayer plMediaPlayer) {
         mMediaPlayer.start();
+        mLifeCircle.onStartPlay();
     }
 
     /**
@@ -207,8 +215,10 @@ public class LivePlayerController implements SurfaceHolder.Callback, PLMediaPlay
                 break;
         }
         if (isNeedReconnect) {
+            mLifeCircle.onReconnect();
             prepare();
         } else {
+            mLifeCircle.onErrorPlay();
             release();
         }
         return false;

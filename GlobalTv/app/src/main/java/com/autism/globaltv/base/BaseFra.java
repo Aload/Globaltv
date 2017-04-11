@@ -1,6 +1,7 @@
 package com.autism.globaltv.base;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -162,6 +163,11 @@ public abstract class BaseFra<T extends IPresenter> extends Fragment implements 
 
     @Override
     public void onLoadmore() {
-
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mRefresh.onFinishFreshAndLoad();
+            }
+        }, 2000);
     }
 }

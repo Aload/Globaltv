@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import com.autism.globaltv.R;
 import com.autism.globaltv.base.BaseRecyclerHolder;
 import com.autism.globaltv.home.model.HomeEntity;
+import com.autism.globaltv.home.view.OnItemRecommonClickLisenter;
 import com.autism.globaltv.home.view.RecommonItemHolder;
 
 import java.util.List;
@@ -14,17 +15,28 @@ import java.util.List;
  * Author：i5 on 2017/4/5 15:37
  * Used:GlobalTv
  */
-public class RecommonItemAdapter extends RecyclerView.Adapter<BaseRecyclerHolder<HomeEntity.RoomBean.ListBean>> {
+public class RecommonItemAdapter extends RecyclerView.Adapter<RecommonItemHolder> {
     private List<HomeEntity.RoomBean.ListBean> mListData;
+    private OnItemRecommonClickLisenter mOnItemRecommonClick;
 
     @Override
-    public BaseRecyclerHolder<HomeEntity.RoomBean.ListBean> onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecommonItemHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new RecommonItemHolder(parent, R.layout.recommon_child_item);
     }
 
+    /**
+     * 设置RecommonItemClick
+     *
+     * @param onItemRecommonClickLisenter
+     */
+    public void setRecommonClick(OnItemRecommonClickLisenter onItemRecommonClickLisenter) {
+        this.mOnItemRecommonClick = onItemRecommonClickLisenter;
+    }
+
     @Override
-    public void onBindViewHolder(BaseRecyclerHolder<HomeEntity.RoomBean.ListBean> holder, int position) {
+    public void onBindViewHolder(RecommonItemHolder holder, int position) {
         holder.setData(mListData.get(position));
+        holder.setRecommonClick(mOnItemRecommonClick);
     }
 
     @Override

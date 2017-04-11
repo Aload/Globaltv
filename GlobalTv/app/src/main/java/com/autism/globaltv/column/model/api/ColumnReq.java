@@ -41,4 +41,16 @@ public class ColumnReq {
                 .compose(RxUtil.<List<ColumnEntity>>ioMain())
                 .subscribe(subscriber);
     }
+
+    /**
+     * 获取单个类型的列表
+     *
+     * @param subscriber
+     * @param msg
+     */
+    public void getColumnListData(Subscriber<JsonObject> subscriber, String msg) {
+        mHomeApi.getColumn("json/categories/" + msg + "/list.json")
+                .compose(RxUtil.<JsonObject>ioMain())
+                .subscribe(subscriber);
+    }
 }

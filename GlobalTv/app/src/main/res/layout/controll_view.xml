@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@android:color/transparent"
         tools:ignore="UselessParent">
 
         <LinearLayout
@@ -22,7 +21,7 @@
 
             <CheckBox
                 android:id="@+id/cb_player"
-                android:layout_width="25dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/check_gift_switch"
@@ -58,13 +57,30 @@
 
         <ImageView
             android:id="@+id/iv_fullscreen"
-            android:layout_width="25dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_margin="5dp"
+            android:layout_marginBottom="@dimen/dp_10"
             android:clickable="true"
             android:src="@drawable/btn_fullscreen_selector"
+            tools:ignore="ContentDescription,RtlHardcoded" />
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_5"
+            android:src="@drawable/btn_live_back_selector"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/dp_5"
+            android:src="@mipmap/share_alpha"
             tools:ignore="ContentDescription,RtlHardcoded" />
     </RelativeLayout>
 
@@ -78,17 +94,23 @@
             android:id="@+id/iv_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="@dimen/dp_5"
+            android:src="@mipmap/ic_default_head"
             tools:ignore="ContentDescription" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_5"
+            android:layout_toRightOf="@+id/iv_header"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:lines="1"
+                android:text="sssss"
                 android:textColor="@color/main_black"
                 android:textSize="@dimen/size_3" />
 
@@ -96,6 +118,8 @@
                 android:id="@+id/tv_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:text="ddddd"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/size_5" />
         </LinearLayout>

@@ -6,13 +6,16 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.autism.baselibs.view.glide.GlideUtils;
 import com.autism.globaltv.R;
+import com.autism.globaltv.live.model.LiveDetailEntity;
 import com.autism.logiclibs.UiUtils;
 
 /**
@@ -27,6 +30,7 @@ public class PlayerControllerView extends FrameLayout implements View.OnClickLis
     private ImageView mFullScreen;
     private View mController;
     private IPlayerControllerListener mPlayerListener;
+    private ImageView mHeaderView;
 
     public PlayerControllerView(@NonNull Context context) {
         this(context, null);
@@ -43,9 +47,12 @@ public class PlayerControllerView extends FrameLayout implements View.OnClickLis
 
     private void onInitView(Context context) {
         View mControllerView = LayoutInflater.from(context).inflate(R.layout.controll_view, null);
-
+        View mBack = mControllerView.findViewById(R.id.back);
+        mBack.setOnClickListener(this);
+        View mShare = mControllerView.findViewById(R.id.share);
+        mShare.setOnClickListener(this);
         mController = mControllerView.findViewById(R.id.rl_controller);
-        UiUtils.measure(mController, 0, 120);
+        UiUtils.measure(mController, 0, 450);
 
         mOffOn = (CheckBox) mControllerView.findViewById(R.id.cb_player);
         mNum = (TextView) mControllerView.findViewById(R.id.tv_num);
@@ -53,7 +60,8 @@ public class PlayerControllerView extends FrameLayout implements View.OnClickLis
 
         View mHeaderContainer = mControllerView.findViewById(R.id.rl_container);
         UiUtils.measure(mHeaderContainer, 0, 150);
-        ImageView mHeaderView = (ImageView) mControllerView.findViewById(R.id.iv_header);
+
+        mHeaderView = (ImageView) mControllerView.findViewById(R.id.iv_header);
         UiUtils.measure(mHeaderView, 92, 92);
 
         mHeaderTitle = (TextView) mControllerView.findViewById(R.id.tv_title);
@@ -64,31 +72,18 @@ public class PlayerControllerView extends FrameLayout implements View.OnClickLis
     }
 
 
-    /**
-     * 设置观看人数
-     *
-     * @param num
-     */
-    public void setViewNum(String num) {
-        mNum.setText(num);
-    }
-
-    /**
-     * 设置标题
-     *
-     * @param title
-     */
-    public void setHeaderTitle(String title) {
-        mHeaderTitle.setText(title);
-    }
-
-    /**
-     * 设置内容
-     *
-     * @param content
-     */
-    public void setHeaderContent(String content) {
-        mHeaderContent.setText(content);
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        int action = event.getAction();
+        switch (action) {
+            case MotionEvent.ACTION_DOWN:
+                setControllerView(true);
+                break;
+            case MotionEvent.ACTION_UP:
+                setControllerView(false);
+                break;
+        }
+        return super.onTouchEvent(event);
     }
 
     /**
@@ -109,6 +104,11 @@ public class PlayerControllerView extends FrameLayout implements View.OnClickLis
             case R.id.iv_fullscreen:
                 mPlayerListener.onOffScreen();
                 break;
+            case R.id.back:
+                mPlayerListener.onStopPlay();
+                break;
+            case R.id.share:
+                break;
             default:
                 break;
         }
@@ -123,9 +123,23 @@ public class PlayerControllerView extends FrameLayout implements View.OnClickLis
         this.mPlayerListener = mListener;
     }
 
-    private interface IPlayerControllerListener {
+    /**
+     * 设置控制器数据
+     *
+     * @param mLiveData
+     */
+    public void setOtherData(LiveDetailEntity mLiveData) {
+        mHeaderTitle.setText(mLiveData.getTitle());
+        mHeaderContent.setText(mLiveData.getIntro());
+        mNum.setText(String.valueOf(mLiveData.getView()));
+        GlideUtils.loadCirleImg(getContext(), mLiveData.getAvatar(), mHeaderView, R.mipmap.ic_default_head);
+    }
+
+    public interface IPlayerControllerListener {
         void onPlayer();
 
         void onOffScreen();
+
+        void onStopPlay();
     }
 }

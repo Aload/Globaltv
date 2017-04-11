@@ -21,4 +21,9 @@
     <string name="tuijian">推荐</string>
     <string name="dingyue">订阅</string>
     <string name="all">全部</string>
+    <string name="chat">聊天</string>
+    <string name="sort">排行</string>
+    <string name="player">主播</string>
+    <string name="system_notify">系统提示</string>
+    <string name="notification">全民直播提倡绿色直播.封面和直播内容含吸烟,\n低俗,引诱,暴露等都将被封停账号.网警24小时在线巡查\n哦.</string>
 </resources>

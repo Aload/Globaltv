@@ -24,12 +24,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".home.HomeAct"
+            android:name=".home.view.HomeAct"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
             android:name=".live.view.LivePlayerAct"
             android:launchMode="singleTop" />
+        <activity
+            android:name=".column.view.ColumnListAct"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

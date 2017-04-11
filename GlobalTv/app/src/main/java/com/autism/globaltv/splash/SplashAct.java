@@ -8,7 +8,7 @@ import com.autism.globaltv.base.BaseAct;
 import com.autism.globaltv.base.BaseInfoManager;
 import com.autism.globaltv.base.IPresenter;
 import com.autism.globaltv.base.ViewUtils;
-import com.autism.globaltv.home.HomeAct;
+import com.autism.globaltv.home.view.HomeAct;
 
 /**
  * Author：autism on 2017/4/1 13:25
@@ -21,7 +21,7 @@ public class SplashAct extends BaseAct<IPresenter> implements Runnable {
     }
 
     @Override
-    protected void onInitViews() {
+    public void onInitViews() {
         BaseInfoManager.getInstance().getMainHandler().postDelayed(this, 2000);
     }
 
@@ -33,6 +33,7 @@ public class SplashAct extends BaseAct<IPresenter> implements Runnable {
     @Override
     public void run() {
         ViewUtils.intentLefttoRight(this, HomeAct.class);
+        finish();
     }
 
     //沉浸式控制title

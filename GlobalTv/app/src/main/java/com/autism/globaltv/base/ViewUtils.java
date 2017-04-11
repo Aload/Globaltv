@@ -2,6 +2,7 @@ package com.autism.globaltv.base;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 
 import com.autism.globaltv.R;
 
@@ -19,7 +20,7 @@ public class ViewUtils {
     }
 
     /**
-     * 携带int参数跳转
+     * 携带String参数跳转
      *
      * @param mActivity
      * @param mClazz
@@ -33,14 +34,29 @@ public class ViewUtils {
         right2LeftIn(mActivity);
     }
 
-    private static void right2LeftIn(Activity activity) {
+    /**
+     * 携带bundle
+     *
+     * @param mActivity
+     * @param mClazz
+     * @param key
+     * @param mBundle
+     */
+    public static void intentLefttoRightBundle(Activity mActivity, Class mClazz, String key, Bundle mBundle) {
+        Intent mIntent = new Intent(mActivity, mClazz);
+        mIntent.putExtra(key, mBundle);
+        mActivity.startActivity(mIntent);
+        right2LeftIn(mActivity);
+    }
+
+    public static void right2LeftIn(Activity activity) {
         if (null == activity) {
             return;
         }
         activity.overridePendingTransition(R.anim.slide_in_from_right, R.anim.no_anim);
     }
 
-    private static void left2RightOut(Activity activity) {
+    public static void left2RightOut(Activity activity) {
         if (null == activity) {
             return;
         }

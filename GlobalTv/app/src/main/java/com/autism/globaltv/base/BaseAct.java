@@ -2,6 +2,7 @@ package com.autism.globaltv.base;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,6 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.autism.baselibs.EventBusLogicUtils;
+import com.autism.baselibs.view.refresh.SpringView;
+import com.autism.baselibs.view.refresh.container.MeituanFooter;
+import com.autism.baselibs.view.refresh.container.MeituanHeader;
 import com.autism.globaltv.R;
 import com.autism.logiclibs.UiUtils;
 
@@ -20,7 +24,7 @@ import java.util.List;
  * Author：autism on 2017/4/1 10:51
  * Used:GlobalTv base activity
  */
-public abstract class BaseAct<T extends IPresenter> extends AppCompatActivity {
+public abstract class BaseAct<T extends IPresenter> extends AppCompatActivity implements SpringView.OnFreshListener {
 
 
     protected ImageView mTvTitleLeft;
@@ -30,6 +34,10 @@ public abstract class BaseAct<T extends IPresenter> extends AppCompatActivity {
     protected T mPresenter;
     private TextView mTitle;
     private View mTitleLayout;
+    protected View mLoading;
+
+    protected final static String TAG = BaseAct.class.getSimpleName();
+    protected SpringView mRefresh;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,7 +47,10 @@ public abstract class BaseAct<T extends IPresenter> extends AppCompatActivity {
         onVariable();
         EventBusLogicUtils.registerBus(this);
         mPresenter = getPresenter();
-        if (null != mPresenter) mPresenter.attachView();
+        if (null != mPresenter) {
+            showLoading();
+            mPresenter.attachView();
+        }
     }
 
     /**
@@ -56,7 +67,34 @@ public abstract class BaseAct<T extends IPresenter> extends AppCompatActivity {
 
     }
 
-    protected abstract void onInitViews();
+    public void onInitViews() {
+        mLoading = findViewById(R.id.loading);
+        mRefresh = (SpringView) findViewById(R.id.refresh_sp);
+        if (null != mRefresh) {
+            mRefresh.setListener(this);
+            mRefresh.setType(SpringView.Type.FOLLOW);
+            mRefresh.setHeader(new MeituanHeader(this));
+            mRefresh.setFooter(new MeituanFooter(this));
+        }
+    }
+
+    /**
+     * 显示加载进度
+     */
+    public void showLoading() {
+        if (null != mLoading) {
+            mLoading.setVisibility(View.VISIBLE);
+        }
+    }
+
+    /**
+     * 取消加载进度
+     */
+    public void dissLoading() {
+        if (null != mLoading) {
+            mLoading.setVisibility(View.GONE);
+        }
+    }
 
     protected abstract int getRelayoutID();
 
@@ -179,5 +217,20 @@ public abstract class BaseAct<T extends IPresenter> extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         EventBusLogicUtils.unRegisterBus(this);
+    }
+
+    @Override
+    public void onRefresh() {
+
+    }
+
+    @Override
+    public void onLoadmore() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mRefresh.onFinishFreshAndLoad();
+            }
+        }, 2000);
     }
 }

@@ -1,6 +1,5 @@
 package com.autism.globaltv.home.view;
 
-import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -9,16 +8,19 @@ import com.autism.baselibs.utils.LogUtil;
 import com.autism.baselibs.view.autopager.AutoScrollViewPager;
 import com.autism.globaltv.R;
 import com.autism.globaltv.base.BaseFra;
+import com.autism.globaltv.base.ViewUtils;
+import com.autism.globaltv.base.common.Config;
 import com.autism.globaltv.home.model.BannerEntity;
 import com.autism.globaltv.home.model.HomeEntity;
 import com.autism.globaltv.home.pre.RecomRecyclerAdapter;
 import com.autism.globaltv.home.pre.RecommendPre;
+import com.autism.globaltv.live.view.LivePlayerAct;
 
 /**
  * Author：i5 on 2017/4/7 14:51
  * Used:GlobalTv
  */
-public class RecommendFra extends BaseFra<RecommendPre> implements RecommendView {
+public class RecommendFra extends BaseFra<RecommendPre> implements RecommendView, OnItemRecommonClickLisenter {
     private RecyclerView mRecycler;
     private AutoScrollViewPager mPager;
     private RecomRecyclerAdapter mRecyclerRecomAdapter;
@@ -37,6 +39,7 @@ public class RecommendFra extends BaseFra<RecommendPre> implements RecommendView
         mRecycler.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         mRecyclerRecomAdapter = new RecomRecyclerAdapter();
         mRecycler.setAdapter(mRecyclerRecomAdapter);
+        mRecyclerRecomAdapter.setRecommonClick(this);
     }
 
     @Override
@@ -52,7 +55,6 @@ public class RecommendFra extends BaseFra<RecommendPre> implements RecommendView
 
     @Override
     public void onBannerSuccess(BannerEntity mDate) {
-
         BannerPagerAdapter bannerPagerAdapter = new BannerPagerAdapter(getActivity(), mDate);
         mPager.setAdapter(bannerPagerAdapter);
         mPager.startAutoScroll(3000);
@@ -69,17 +71,16 @@ public class RecommendFra extends BaseFra<RecommendPre> implements RecommendView
     @Override
     public void onLoadmore() {
         super.onLoadmore();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mRefresh.onFinishFreshAndLoad();
-            }
-        }, 2000);
     }
 
     @Override
     public void onRecommonFailed(String msg) {
         LogUtil.d(TAG, msg);
         mRefresh.onFinishFreshAndLoad();
+    }
+
+    @Override
+    public void onItemRecommonClick(HomeEntity.RoomBean.ListBean mData) {
+        ViewUtils.intentLefttoRightBundleInteger(getActivity(), LivePlayerAct.class, Config.ENTERUID, String.valueOf(mData.getUid()));
     }
 }

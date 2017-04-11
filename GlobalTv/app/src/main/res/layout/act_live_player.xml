@@ -5,8 +5,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/view_title_layout" />
-
     <RelativeLayout
         android:id="@+id/rl_controller_layout"
         android:layout_width="match_parent"
@@ -20,14 +18,21 @@
         <com.autism.globaltv.live.view.PlayerControllerView
             android:id="@+id/pc_layout"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.autism.baselibs.view.loading.LoadingView
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true" />
+            android:layout_centerInParent="true"
+            app:indicator="BallSpinFadeLoader" />
     </RelativeLayout>
 
     <com.autism.baselibs.view.tablayout.SmartTabLayout
         android:id="@+id/viewpagertab"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:padding="@dimen/dp_5"
         app:stl_clickable="true"
         app:stl_defaultTabBackground="?attr/selectableItemBackground"
         app:stl_defaultTabTextAllCaps="true"

@@ -1,4 +1,4 @@
-package com.autism.globaltv.home;
+package com.autism.globaltv.home.view;
 
 import android.support.annotation.IdRes;
 import android.support.v4.app.FragmentManager;
@@ -30,7 +30,7 @@ public class HomeAct extends BaseAct implements RadioGroup.OnCheckedChangeListen
     }
 
     @Override
-    protected void onInitViews() {
+    public void onInitViews() {
         super.initTitle();
         setTitleLeftIcon(R.mipmap.img_rec_logo, null);
         setTitleRightIcon(R.drawable.btn_search_selector, this);

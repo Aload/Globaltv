@@ -5,6 +5,7 @@ import android.view.ViewGroup;
 
 import com.autism.globaltv.base.BaseRecyclerHolder;
 import com.autism.globaltv.home.model.HomeEntity;
+import com.autism.globaltv.home.view.OnItemRecommonClickLisenter;
 import com.autism.globaltv.home.view.RecomRecyclerHolder;
 
 import java.util.List;
@@ -16,14 +17,25 @@ import java.util.List;
 public class RecomRecyclerAdapter extends RecyclerView.Adapter<RecomRecyclerHolder> {
 
     private HomeEntity mBeanList;
+    private OnItemRecommonClickLisenter mOnItemRecommonClick;
 
     @Override
     public RecomRecyclerHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new RecomRecyclerHolder(parent);
     }
 
+    /**
+     * 设置RecommonItemClick
+     *
+     * @param onItemRecommonClickLisenter
+     */
+    public void setRecommonClick(OnItemRecommonClickLisenter onItemRecommonClickLisenter) {
+        this.mOnItemRecommonClick = onItemRecommonClickLisenter;
+    }
+
     @Override
     public void onBindViewHolder(RecomRecyclerHolder holder, int position) {
+        holder.setRecommonClick(mOnItemRecommonClick);
         List<HomeEntity.RoomBean> room = mBeanList.getRoom();
         holder.setData(room.get(position));
     }

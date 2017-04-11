@@ -7,6 +7,7 @@ import com.autism.globaltv.R;
 import com.autism.globaltv.base.BaseRecyclerHolder;
 import com.autism.globaltv.column.model.ColumnEntity;
 import com.autism.globaltv.column.view.ColumnHolder;
+import com.autism.globaltv.column.view.IOnColumnClick;
 
 import java.util.List;
 
@@ -16,6 +17,7 @@ import java.util.List;
  */
 public class ColumnAdapter extends RecyclerView.Adapter<ColumnHolder> {
     private List<ColumnEntity> mList;
+    private IOnColumnClick mOnClick;
 
     @Override
     public ColumnHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -25,9 +27,12 @@ public class ColumnAdapter extends RecyclerView.Adapter<ColumnHolder> {
     @Override
     public void onBindViewHolder(ColumnHolder holder, int position) {
         holder.setData(mList.get(position));
+        holder.setItemClick(mOnClick);
     }
 
-
+    public void setItemClick(IOnColumnClick itemClick){
+        this.mOnClick=itemClick;
+    }
     @Override
     public int getItemCount() {
         return mList == null ? 0 : mList.size();

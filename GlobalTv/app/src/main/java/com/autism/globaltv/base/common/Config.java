@@ -6,4 +6,8 @@ package com.autism.globaltv.base.common;
  */
 public interface Config {
     String ENTERUID="enterUid";
+    //Column
+    String COLUMNTYPE="column_type";
+    String COLUMN_NAME="column_name";
+    String COLUMN_FLUG="column_flug";
 }

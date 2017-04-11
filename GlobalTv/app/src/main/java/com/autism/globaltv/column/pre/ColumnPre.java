@@ -7,6 +7,7 @@ import com.autism.globaltv.base.BasePresenter;
 import com.autism.globaltv.column.model.ColumnEntity;
 import com.autism.globaltv.column.model.api.ColumnReq;
 import com.autism.globaltv.column.view.ColumnView;
+import com.google.gson.JsonObject;
 
 import java.util.List;
 
@@ -36,6 +37,14 @@ public class ColumnPre extends BasePresenter<ColumnView> {
         };
         ColumnReq.getInstance().getColumnData(subscriber);
         addSubscrebe(subscriber);
+    }
+
+    /**
+     *
+     * @param msg
+     */
+    public void attachItemView(String msg) {
+
     }
 
     @Override

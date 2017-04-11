@@ -18,6 +18,7 @@ import com.autism.globaltv.home.pre.RecommonItemAdapter;
 public class RecomRecyclerHolder extends BaseRecyclerHolder<HomeEntity.RoomBean> {
     private TextView mTitle;
     private RecommonItemAdapter recommonItemAdapter;
+    private OnItemRecommonClickLisenter mOnItemRecommonClick;
 
     public RecomRecyclerHolder(ViewGroup parent) {
         super(parent, R.layout.recommon_item);
@@ -30,8 +31,18 @@ public class RecomRecyclerHolder extends BaseRecyclerHolder<HomeEntity.RoomBean>
         mRecycler.setAdapter(recommonItemAdapter);
     }
 
+    /**
+     * 设置RecommonItemClick
+     *
+     * @param onItemRecommonClickLisenter
+     */
+    public void setRecommonClick(OnItemRecommonClickLisenter onItemRecommonClickLisenter) {
+        this.mOnItemRecommonClick = onItemRecommonClickLisenter;
+    }
+
     @Override
     public void setData(HomeEntity.RoomBean mData) {
+        recommonItemAdapter.setRecommonClick(mOnItemRecommonClick);
         mTitle.setText(mData.getName());
         recommonItemAdapter.notifyItemUi(mData.getList());
     }

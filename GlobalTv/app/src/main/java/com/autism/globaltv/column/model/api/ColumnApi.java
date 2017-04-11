@@ -1,6 +1,9 @@
 package com.autism.globaltv.column.model.api;
 
 import com.autism.globaltv.column.model.ColumnEntity;
+import com.google.gson.JsonObject;
+
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -16,4 +19,7 @@ public interface ColumnApi {
 
     @GET("{url}?11211637&os=1&v=2.2.4&os=1&ver=4")
     Observable<List<ColumnEntity>> getColumnList(@Path("url") String url);
+
+    @GET("{url}?04111424=&toid=0&token&sid&cv=quanmin_3.1.1")
+    Observable<JsonObject> getColumn(@Path("url") String url);
 }
