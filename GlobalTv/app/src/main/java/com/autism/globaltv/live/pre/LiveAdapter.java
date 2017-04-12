@@ -1,10 +1,12 @@
-package com.autism.globaltv.live.view;
+package com.autism.globaltv.live.pre;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import com.autism.globaltv.R;
 import com.autism.globaltv.live.model.LiveEntity;
+import com.autism.globaltv.live.view.IOnItemClickListener;
+import com.autism.globaltv.live.view.LiveHolder;
 
 import java.util.List;
 

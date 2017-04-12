@@ -1,29 +1,61 @@
 package com.autism.globaltv.live.view;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.support.v4.view.ViewPager;
+import android.view.MotionEvent;
 import android.view.SurfaceView;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.CheckBox;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import com.autism.baselibs.view.glide.GlideUtils;
 import com.autism.baselibs.view.tablayout.FragmentPagerItem;
 import com.autism.baselibs.view.tablayout.FragmentPagerItemAdapter;
 import com.autism.baselibs.view.tablayout.FragmentPagerItems;
 import com.autism.baselibs.view.tablayout.SmartTabLayout;
 import com.autism.globaltv.R;
 import com.autism.globaltv.base.BaseAct;
+import com.autism.globaltv.base.ViewUtils;
 import com.autism.globaltv.base.common.Config;
 import com.autism.globaltv.live.model.LiveDetailEntity;
 import com.autism.globaltv.live.pre.LivePlayerController;
 import com.autism.globaltv.live.pre.LivePre;
+import com.autism.logiclibs.UiUtils;
+
+import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
 
 /**
  * Author：i5 on 2017/4/10 11:00
  * Used:GlobalTv
  */
-public class LivePlayerAct extends BaseAct<LivePre> implements LivePlayerView, PlayerControllerView.IPlayerControllerListener, IPlayerLifeCircle {
-    private PlayerControllerView mControllerView;
+public class LivePlayerAct extends BaseAct<LivePre> implements LivePlayerView, IPlayerLifeCircle, View.OnClickListener, View.OnTouchListener {
+    private View mControllerView;
     private String mUid;
     private LivePlayerController mLivePlayer;
+    private TextView mHeaderTitle;
+    private TextView mHeaderContent;
+    private CheckBox mOffOn;
+    private TextView mNum;
+    private ImageView mFullScreen;
+    private View mController;
+    private ImageView mHeaderView;
+    private FrameLayout mControllerViewContent;
+    private SurfaceView mSurface;
+    private boolean isVertical = true;
+
+    @Override
+    public void setLiveConfig() {
+        super.setLiveConfig();
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+    }
 
     @Override
     protected LivePre getPresenter() {
@@ -34,11 +66,35 @@ public class LivePlayerAct extends BaseAct<LivePre> implements LivePlayerView, P
     public void onInitViews() {
         Intent intent = getIntent();
         mUid = intent.getStringExtra(Config.ENTERUID);
-        RelativeLayout mControllerViewContent = (RelativeLayout) findViewById(R.id.rl_controller_layout);
+        mControllerViewContent = (FrameLayout) findViewById(R.id.rl_controller_layout);
+        mSurface = (SurfaceView) findViewById(R.id.sv_player);
         measure(mControllerViewContent, 0, 600);
-        SurfaceView mSurface = (SurfaceView) findViewById(R.id.sv_player);
         measure(mSurface, 0, 450);
-        mControllerView = (PlayerControllerView) findViewById(R.id.pc_layout);
+        mControllerView = findViewById(R.id.pc_layout);
+        mControllerView.setOnTouchListener(this);
+        View mBack = mControllerView.findViewById(R.id.back);
+        mBack.setOnClickListener(this);
+        View mShare = mControllerView.findViewById(R.id.share);
+        mShare.setOnClickListener(this);
+        mController = mControllerView.findViewById(R.id.rl_controller);
+        UiUtils.measure(mController, 0, 450);
+
+        mOffOn = (CheckBox) mControllerView.findViewById(R.id.cb_player);
+        mNum = (TextView) mControllerView.findViewById(R.id.tv_num);
+        mFullScreen = (ImageView) mControllerView.findViewById(R.id.iv_fullscreen);
+
+        View mHeaderContainer = mControllerView.findViewById(R.id.rl_container);
+        UiUtils.measure(mHeaderContainer, 0, 150);
+
+        mHeaderView = (ImageView) mControllerView.findViewById(R.id.iv_header);
+        UiUtils.measure(mHeaderView, 92, 92);
+
+        mHeaderTitle = (TextView) mControllerView.findViewById(R.id.tv_title);
+        mHeaderContent = (TextView) mControllerView.findViewById(R.id.tv_content);
+
+        mOffOn.setOnClickListener(this);
+        mFullScreen.setOnClickListener(this);
+
         SmartTabLayout smartTabLayout = (SmartTabLayout) findViewById(R.id.viewpagertab);
         ViewPager mPager = (ViewPager) findViewById(R.id.vp_player);
         FragmentPagerItems pages = new FragmentPagerItems(this);
@@ -50,7 +106,15 @@ public class LivePlayerAct extends BaseAct<LivePre> implements LivePlayerView, P
         mPager.setAdapter(adapter);
         smartTabLayout.setViewPager(mPager);
         mLivePlayer = new LivePlayerController(this, mSurface, 0, this);
-        mControllerView.setVariableListener(this);
+    }
+
+    /**
+     * 控制是否显示控制器
+     *
+     * @param isShown
+     */
+    public void setControllerView(boolean isShown) {
+        mController.setVisibility(isShown ? VISIBLE : INVISIBLE);
     }
 
     @Override
@@ -61,7 +125,10 @@ public class LivePlayerAct extends BaseAct<LivePre> implements LivePlayerView, P
 
     @Override
     public void onEnterSuccess(LiveDetailEntity mLiveData) {
-        mControllerView.setOtherData(mLiveData);
+        mHeaderTitle.setText(mLiveData.getTitle());
+        mHeaderContent.setText(mLiveData.getIntro());
+        mNum.setText(String.valueOf(mLiveData.getView()));
+        GlideUtils.loadCirleImg(this, mLiveData.getAvatar(), mHeaderView, R.mipmap.ic_default_head);
         mLivePlayer.setDataResUrl(mLiveData.getLive().getWs().getFlv().get_$3().getSrc());
     }
 
@@ -70,15 +137,6 @@ public class LivePlayerAct extends BaseAct<LivePre> implements LivePlayerView, P
 
     }
 
-    @Override
-    public void onPlayer() {
-
-    }
-
-    @Override
-    public void onOffScreen() {
-
-    }
 
     @Override
     public void onStartPlay() {
@@ -104,5 +162,44 @@ public class LivePlayerAct extends BaseAct<LivePre> implements LivePlayerView, P
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        switch (id) {
+            case R.id.back:
+                ViewUtils.left2RightOut(this);
+                finish();
+                break;
+            case R.id.share:
+                break;
+            case R.id.cb_player:
+                break;
+            case R.id.iv_fullscreen:
+                setRequestedOrientation(isVertical ? ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE : ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                break;
+        }
+    }
+
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        isVertical = newConfig.orientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        int action = event.getAction();
+        switch (action) {
+            case MotionEvent.ACTION_DOWN:
+                setControllerView(true);
+                break;
+            case MotionEvent.ACTION_UP:
+                setControllerView(false);
+                break;
+        }
+        return super.onTouchEvent(event);
     }
 }

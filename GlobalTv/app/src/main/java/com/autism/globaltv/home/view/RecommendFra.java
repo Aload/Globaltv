@@ -15,6 +15,7 @@ import com.autism.globaltv.home.model.HomeEntity;
 import com.autism.globaltv.home.pre.RecomRecyclerAdapter;
 import com.autism.globaltv.home.pre.RecommendPre;
 import com.autism.globaltv.live.view.LivePlayerAct;
+import com.autism.globaltv.live.view.LiveShowPlayerAct;
 
 /**
  * Author：i5 on 2017/4/7 14:51
@@ -81,6 +82,9 @@ public class RecommendFra extends BaseFra<RecommendPre> implements RecommendView
 
     @Override
     public void onItemRecommonClick(HomeEntity.RoomBean.ListBean mData) {
-        ViewUtils.intentLefttoRightBundleInteger(getActivity(), LivePlayerAct.class, Config.ENTERUID, String.valueOf(mData.getUid()));
+        if ("showing".equals(mData.getCategory_slug())) {
+            ViewUtils.intentLefttoRightBundleInteger(getActivity(), LiveShowPlayerAct.class, Config.ENTERUID, String.valueOf(mData.getUid()));
+        } else
+            ViewUtils.intentLefttoRightBundleInteger(getActivity(), LivePlayerAct.class, Config.ENTERUID, String.valueOf(mData.getUid()));
     }
 }

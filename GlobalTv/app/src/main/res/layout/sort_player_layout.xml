@@ -6,52 +6,50 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="330dp"
-        android:layout_height="@dimen/dp_50"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/dp_10"
-        android:background="@drawable/live_tag"
         android:weightSum="3">
 
         <TextView
+            android:id="@+id/txt_01"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@mipmap/reload_unpressed"
             android:gravity="center"
-            android:text="@string/all" />
-
-        <RelativeLayout
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:gravity="center">
-
-            <View
-                android:layout_width="@dimen/dp_0.5"
-                android:layout_height="match_parent"
-                android:layout_alignParentLeft="true"
-                android:background="@color/reb_change" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="@string/all" />
-
-            <View
-                android:layout_width="@dimen/dp_0.5"
-                android:layout_height="@dimen/dp_50"
-                android:layout_alignParentRight="true"
-                android:background="@color/reb_change" />
-        </RelativeLayout>
+            android:text="守护"
+            android:textColor="@color/reb_change"
+            android:textSize="@dimen/size_5" />
 
         <TextView
+            android:id="@+id/txt_02"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_weight="1"
+            android:background="@mipmap/reload_unpressed"
+            android:gravity="center"
+            android:text="贡献周榜"
+            android:textColor="@color/reb_change"
+            android:textSize="@dimen/size_5" />
+
+        <TextView
+            android:id="@+id/txt_03"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_weight="1"
+            android:background="@mipmap/reload_unpressed"
             android:gravity="center"
-            android:text="@string/all" />
+            android:text="贡献总榜"
+            android:textColor="@color/reb_change"
+            android:textSize="@dimen/size_5" />
     </LinearLayout>
+
+    <com.autism.baselibs.view.viewpager.NoScollViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

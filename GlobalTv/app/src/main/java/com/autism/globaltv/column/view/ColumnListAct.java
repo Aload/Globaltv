@@ -15,6 +15,7 @@ import com.autism.globaltv.column.model.ColumnListEntity;
 import com.autism.globaltv.column.pre.ColumnListAdapter;
 import com.autism.globaltv.column.pre.ColumnListPre;
 import com.autism.globaltv.live.view.LivePlayerAct;
+import com.autism.globaltv.live.view.LiveShowPlayerAct;
 
 /**
  * Author：i5 on 2017/4/11 14:50
@@ -83,6 +84,9 @@ public class ColumnListAct extends BaseAct<ColumnListPre> implements View.OnClic
 
     @Override
     public void onClickItemType(ColumnListEntity.DataBean mData) {
-        ViewUtils.intentLefttoRightBundleInteger(this, LivePlayerAct.class, Config.ENTERUID, mData.getUid());
+        if ("showing".equals(mData.getCategory_slug())) {
+            ViewUtils.intentLefttoRightBundleInteger(this, LiveShowPlayerAct.class, Config.ENTERUID, mData.getUid());
+        } else
+            ViewUtils.intentLefttoRightBundleInteger(this, LivePlayerAct.class, Config.ENTERUID, mData.getUid());
     }
 }

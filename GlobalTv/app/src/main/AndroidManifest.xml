@@ -29,9 +29,15 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".live.view.LivePlayerAct"
-            android:launchMode="singleTop" />
+            android:configChanges="orientation|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="sensor" />
         <activity
             android:name=".column.view.ColumnListAct"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".live.view.LiveShowPlayerAct"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
     </application>

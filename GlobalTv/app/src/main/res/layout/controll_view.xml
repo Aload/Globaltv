@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pc_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -10,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:background="@android:color/transparent"
         tools:ignore="UselessParent">
 
         <LinearLayout
@@ -18,19 +20,6 @@
             android:layout_alignParentBottom="true"
             android:orientation="vertical"
             tools:ignore="UselessParent">
-
-            <CheckBox
-                android:id="@+id/cb_player"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/check_gift_switch"
-                android:layout_margin="5dp"
-                android:layout_weight="1.0"
-                android:button="@null"
-                android:checked="false"
-                android:drawableLeft="@mipmap/btn_live_pause"
-                tools:ignore="InefficientWeight,ObsoleteLayoutParam,RtlHardcoded" />
 
             <TextView
                 android:id="@+id/tv_num"
@@ -53,6 +42,20 @@
                 android:textColor="@color/white"
                 android:textSize="10.0sp"
                 tools:ignore="Deprecated,HardcodedText,ObsoleteLayoutParam,RtlHardcoded" />
+
+            <CheckBox
+                android:id="@+id/cb_player"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/check_gift_switch"
+                android:layout_margin="5dp"
+                android:layout_weight="1.0"
+                android:button="@null"
+                android:checked="false"
+                android:drawableLeft="@mipmap/btn_live_pause"
+                tools:ignore="InefficientWeight,ObsoleteLayoutParam,RtlHardcoded" />
+
         </LinearLayout>
 
         <ImageView

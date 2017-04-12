@@ -41,6 +41,7 @@ public abstract class BaseAct<T extends IPresenter> extends AppCompatActivity im
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        setLiveConfig();
         super.onCreate(savedInstanceState);
         setContentView(getRelayoutID());
         onInitViews();
@@ -51,6 +52,13 @@ public abstract class BaseAct<T extends IPresenter> extends AppCompatActivity im
             showLoading();
             mPresenter.attachView();
         }
+    }
+
+    /**
+     * 需要时候复写
+     */
+    public void setLiveConfig() {
+
     }
 
     /**

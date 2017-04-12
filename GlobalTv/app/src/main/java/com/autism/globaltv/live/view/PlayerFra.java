@@ -2,19 +2,16 @@ package com.autism.globaltv.live.view;
 
 import android.os.Handler;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.autism.baselibs.utils.LogUtil;
-import com.autism.baselibs.view.refresh.SpringView;
-import com.autism.baselibs.view.refresh.container.MeituanFooter;
-import com.autism.baselibs.view.refresh.container.MeituanHeader;
 import com.autism.globaltv.R;
 import com.autism.globaltv.base.BaseFra;
 import com.autism.globaltv.base.ViewUtils;
 import com.autism.globaltv.base.common.Config;
 import com.autism.globaltv.live.model.LiveEntity;
+import com.autism.globaltv.live.pre.LiveAdapter;
 import com.autism.globaltv.live.pre.PlayerPre;
 
 /**
@@ -73,6 +70,9 @@ public class PlayerFra extends BaseFra<PlayerPre> implements LiveView, IOnItemCl
 
     @Override
     public void itemClick(int position, LiveEntity.DataBeanX mData) {
-        ViewUtils.intentLefttoRightBundleInteger(getActivity(), LivePlayerAct.class, Config.ENTERUID, mData.getUid());
+        if ("showing".equals(mData.getCategory_slug())) {
+            ViewUtils.intentLefttoRightBundleInteger(getActivity(), LiveShowPlayerAct.class, Config.ENTERUID, mData.getUid());
+        } else
+            ViewUtils.intentLefttoRightBundleInteger(getActivity(), LivePlayerAct.class, Config.ENTERUID, mData.getUid());
     }
 }

@@ -44,5 +44,4 @@ public class LivePre extends BasePresenter<LivePlayerView> {
         LiveReq.getInstance().getLiveDetailData(subscriber, mUid);
         addSubscrebe(subscriber);
     }
-
 }
