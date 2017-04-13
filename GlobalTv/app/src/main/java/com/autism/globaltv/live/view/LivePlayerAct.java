@@ -137,7 +137,6 @@ public class LivePlayerAct extends BaseAct<LivePre> implements LivePlayerView, I
 
     }
 
-
     @Override
     public void onStartPlay() {
         dissLoading();
