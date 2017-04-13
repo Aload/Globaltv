@@ -5,14 +5,14 @@
 二,参考https://github.com/a371166028/likequanmintv
 
 三,部分界面截图：
-![](https://github.com/Aload/ImagePicStore/imge/a.jpg)  
+![](https://github.com/Aload/ImagePicStore/raw/master/imge/a.jpg)  
 
-![](https://github.com/Aload/ImagePicStore/imge/b.jpg) 
+![](https://github.com/Aload/ImagePicStore/raw/master/imge/b.jpg) 
 
-![](https://github.com/Aload/ImagePicStore/imge/c.jpg) 
+![](https://github.com/Aload/ImagePicStore/raw/master/imge/c.jpg) 
 
-![](https://github.com/Aload/ImagePicStore/imge/d.jpg) 
+![](https://github.com/Aload/ImagePicStore/raw/master/imge/d.jpg) 
  
-![](https://github.com/Aload/ImagePicStore/imge/e.jpg)  
+![](https://github.com/Aload/ImagePicStore/raw/master/imge/e.jpg)  
 
-![](https://github.com/Aload/ImagePicStore/imge/f.jpg)  
+![](https://github.com/Aload/ImagePicStore/raw/master/imge/f.jpg)  
