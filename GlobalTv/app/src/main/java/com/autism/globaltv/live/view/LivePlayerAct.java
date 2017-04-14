@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
@@ -129,7 +130,17 @@ public class LivePlayerAct extends BaseAct<LivePre> implements LivePlayerView, I
         mHeaderContent.setText(mLiveData.getIntro());
         mNum.setText(String.valueOf(mLiveData.getView()));
         GlideUtils.loadCirleImg(this, mLiveData.getAvatar(), mHeaderView, R.mipmap.ic_default_head);
-        mLivePlayer.setDataResUrl(mLiveData.getLive().getWs().getFlv().get_$3().getSrc());
+        LiveDetailEntity.LiveBean.WsBean.FlvBean._$3Bean src3 = mLiveData.getLive().getWs().getFlv().get_$3();
+        LiveDetailEntity.LiveBean.WsBean.FlvBean._$4Bean src4 = mLiveData.getLive().getWs().getFlv().get_$4();
+        LiveDetailEntity.LiveBean.WsBean.FlvBean._$5Bean src5 = mLiveData.getLive().getWs().getFlv().get_$5();
+        if (null != src3) {
+            mLivePlayer.setDataResUrl(src3.getSrc());
+        } else if (null != src4) {
+            mLivePlayer.setDataResUrl(src4.getSrc());
+        } else {
+            mLivePlayer.setDataResUrl(src5.getSrc());
+        }
+
     }
 
     @Override

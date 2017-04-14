@@ -714,7 +714,7 @@ public class LiveDetailEntity {
 
                     private String rankType;
                     private int anchorGets;
-                    private int anchorRank;
+                    private Object anchorRank;
                     private int anchorPre;
 
                     public String getRankType() {
@@ -733,11 +733,11 @@ public class LiveDetailEntity {
                         this.anchorGets = anchorGets;
                     }
 
-                    public int getAnchorRank() {
+                    public Object getAnchorRank() {
                         return anchorRank;
                     }
 
-                    public void setAnchorRank(int anchorRank) {
+                    public void setAnchorRank(Object anchorRank) {
                         this.anchorRank = anchorRank;
                     }
 
