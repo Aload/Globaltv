@@ -140,7 +140,6 @@ public class LivePlayerAct extends BaseAct<LivePre> implements LivePlayerView, I
         } else {
             mLivePlayer.setDataResUrl(src5.getSrc());
         }
-
     }
 
     @Override
