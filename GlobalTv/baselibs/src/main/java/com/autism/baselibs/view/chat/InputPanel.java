@@ -1,7 +1,7 @@
 package com.autism.baselibs.view.chat;
 
-import android.app.Activity;
 import android.content.Context;
+import android.graphics.Rect;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
@@ -9,7 +9,6 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,7 +17,7 @@ import android.widget.TextView;
 
 import com.autism.baselibs.R;
 
-public class InputPanel extends LinearLayout {
+public class InputPanel extends LinearLayout implements EmojiBoard.OnEmojiItemClickListener {
 
     private final static String TAG = "InputPanel";
     private final Context mContext;
@@ -30,6 +29,16 @@ public class InputPanel extends LinearLayout {
     private EmojiBoard emojiBoard;
 
     private InputPanelListener listener;
+
+    @Override
+    public void onClick(String code) {
+
+        if (code.equals("/DEL")) {
+            textEditor.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
+        } else {
+            textEditor.getText().insert(textEditor.getSelectionStart(), code);
+        }
+    }
 
     public interface InputPanelListener {
         void onSendClick(String text);
@@ -96,16 +105,7 @@ public class InputPanel extends LinearLayout {
             }
         });
 
-        emojiBoard.setItemClickListener(new EmojiBoard.OnEmojiItemClickListener() {
-            @Override
-            public void onClick(String code) {
-                if (code.equals("/DEL")) {
-                    textEditor.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
-                } else {
-                    textEditor.getText().insert(textEditor.getSelectionStart(), code);
-                }
-            }
-        });
+        emojiBoard.setItemClickListener(this);
     }
 
     public void setPanelListener(InputPanelListener l) {

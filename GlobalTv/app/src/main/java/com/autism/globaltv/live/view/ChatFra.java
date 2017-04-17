@@ -46,7 +46,7 @@ public class ChatFra extends BaseFra<IPresenter> implements InputPanel.InputPane
         mRvChat.setAdapter(mListAdapter);
 
         inputPanel = (InputPanel) mView.findViewById(R.id.input_panel);
-        inputPanel.setPanelListener(this);
+        inputPanel.setPanelListener( this);
     }
 
     @Override

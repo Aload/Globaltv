@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.autism.baselibs.utils.NumUtils;
 import com.autism.baselibs.utils.ToastUtils;
 import com.autism.baselibs.view.chat.ChatListView;
 import com.autism.baselibs.view.chat.InputPanel;
@@ -120,7 +121,7 @@ public class LiveShowPlayerAct extends BaseAct<LivePre> implements LivePlayerVie
         mLivePlayer.setDataResUrl(mLiveData.getLive().getWs().getFlv().get_$5().getSrc());
         GlideUtils.loadCirleImg(this, mLiveData.getAvatar(), mImgePlayer, R.mipmap.ic_default_head);
         mTvName.setText(mLiveData.getNick());
-        mTvView.setText(new StringBuffer().append("观看人数").append(mLiveData.getView()).toString());
+        mTvView.setText(new StringBuffer().append("观看人数").append(NumUtils.transFormNum(String.valueOf(mLiveData.getView()))).toString());
     }
 
     @Override

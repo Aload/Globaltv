@@ -14,6 +14,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.autism.baselibs.utils.NumUtils;
 import com.autism.baselibs.view.glide.GlideUtils;
 import com.autism.baselibs.view.tablayout.FragmentPagerItem;
 import com.autism.baselibs.view.tablayout.FragmentPagerItemAdapter;
@@ -174,7 +175,7 @@ public class LivePlayerAct extends BaseAct<LivePre> implements LivePlayerView, I
     public void onEnterSuccess(LiveDetailEntity mLiveData) {
         mHeaderTitle.setText(mLiveData.getTitle());
         mHeaderContent.setText(mLiveData.getIntro());
-        mNum.setText(String.valueOf(mLiveData.getView()));
+        mNum.setText(NumUtils.transFormNum(String.valueOf(mLiveData.getView())));
         GlideUtils.loadCirleImg(this, mLiveData.getAvatar(), mHeaderView, R.mipmap.ic_default_head);
         LiveDetailEntity.LiveBean.WsBean.FlvBean._$3Bean src3 = mLiveData.getLive().getWs().getFlv().get_$3();
         LiveDetailEntity.LiveBean.WsBean.FlvBean._$4Bean src4 = mLiveData.getLive().getWs().getFlv().get_$4();
@@ -224,6 +225,7 @@ public class LivePlayerAct extends BaseAct<LivePre> implements LivePlayerView, I
         int id = v.getId();
         switch (id) {
             case R.id.back:
+                mLivePlayer.release();
                 ViewUtils.left2RightOut(this);
                 finish();
                 break;
