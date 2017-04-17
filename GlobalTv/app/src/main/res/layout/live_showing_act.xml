@@ -10,14 +10,10 @@
     <FrameLayout
         android:id="@+id/rl_controller_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
 
-        <SurfaceView
-            android:id="@+id/sv_player"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <include layout="@layout/controll_view" />
+        <include layout="@layout/activity_liveshow" />
 
         <com.autism.baselibs.view.loading.LoadingView
             android:id="@+id/loading"

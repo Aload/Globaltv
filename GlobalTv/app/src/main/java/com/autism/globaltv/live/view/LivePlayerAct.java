@@ -3,8 +3,10 @@ package com.autism.globaltv.live.view;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
@@ -24,10 +26,15 @@ import com.autism.globaltv.R;
 import com.autism.globaltv.base.BaseAct;
 import com.autism.globaltv.base.ViewUtils;
 import com.autism.globaltv.base.common.Config;
+import com.autism.globaltv.live.model.DanmuEntity;
 import com.autism.globaltv.live.model.LiveDetailEntity;
 import com.autism.globaltv.live.pre.LivePlayerController;
 import com.autism.globaltv.live.pre.LivePre;
 import com.autism.logiclibs.UiUtils;
+import com.orzangleli.xdanmuku.DanmuContainerView;
+import com.orzangleli.xdanmuku.DanmuConverter;
+
+import java.util.Random;
 
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
@@ -69,8 +76,10 @@ public class LivePlayerAct extends BaseAct<LivePre> implements LivePlayerView, I
         mUid = intent.getStringExtra(Config.ENTERUID);
         mControllerViewContent = (FrameLayout) findViewById(R.id.rl_controller_layout);
         mSurface = (SurfaceView) findViewById(R.id.sv_player);
+        DanmuContainerView mDmView = (DanmuContainerView) findViewById(R.id.dm_view);
         measure(mControllerViewContent, 0, 600);
         measure(mSurface, 0, 450);
+        measure(mDmView, 0, 450);
         mControllerView = findViewById(R.id.pc_layout);
         mControllerView.setOnTouchListener(this);
         View mBack = mControllerView.findViewById(R.id.back);
@@ -107,6 +116,40 @@ public class LivePlayerAct extends BaseAct<LivePre> implements LivePlayerView, I
         mPager.setAdapter(adapter);
         smartTabLayout.setViewPager(mPager);
         mLivePlayer = new LivePlayerController(this, mSurface, 0, this);
+        DanmuConverter danmuConverter = new DanmuConverter<DanmuEntity>() {
+            @Override
+            public int getSingleLineHeight() {
+                //将所有类型弹幕的布局拿出来，找到高度最大值，作为弹道高度
+                View view = LayoutInflater.from(LivePlayerAct.this).inflate(R.layout.item_danmu, null);
+                //指定行高
+                view.measure(0, 0);
+                View view1 = LayoutInflater.from(LivePlayerAct.this).inflate(R.layout.item_danmu_02, null);
+                //指定行高
+                view.measure(0, 0);
+                return Math.max(view.getMeasuredHeight(), view1.getMeasuredHeight());
+            }
+
+            @Override
+            public View convert(DanmuEntity mEntity) {
+                View mView;
+                if (mEntity.getType() == 0) {
+                    mView = LayoutInflater.from(LivePlayerAct.this).inflate(R.layout.item_danmu, null);
+                    TextView content = (TextView) mView.findViewById(R.id.dm_txt);
+                    ImageView image = (ImageView) mView.findViewById(R.id.dm_img);
+                    measure(image, 72, 72);
+                    GlideUtils.loadCirleImg(LivePlayerAct.this, mEntity.getImgUri(), image, R.mipmap.ic_default_head);
+                    content.setText(mEntity.getMsg());
+                } else {
+                    mView = LayoutInflater.from(LivePlayerAct.this).inflate(R.layout.item_danmu_02, null);
+                    TextView mText = (TextView) mView.findViewById(R.id.tv_dm);
+                    mText.setText(mEntity.getMsg());
+                }
+                return mView;
+            }
+        };
+        mDmView.setConverter(danmuConverter);
+        mDmView.setSpeed(DanmuContainerView.HIGH_SPEED);
+        mDmView.setGravity(DanmuContainerView.GRAVITY_TOP | DanmuContainerView.GRAVITY_CENTER | DanmuContainerView.GRAVITY_BOTTOM);
     }
 
     /**

@@ -15,6 +15,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
+        <com.orzangleli.xdanmuku.DanmuContainerView
+            android:id="@+id/dm_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <include layout="@layout/controll_view" />
 
         <com.autism.baselibs.view.loading.LoadingView

@@ -45,4 +45,7 @@ dependencies {
     compile 'jp.wasabeef:glide-transformations:2.0.1'
     //客户端七牛
     compile 'com.qiniu.pili:pili-android-qos:0.8.+'
+
+    //弹幕控件
+    compile 'com.github.hust201010701:XDanmuku:33a063b46e'
 }

@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/GlobalTv.iml" filepath="$PROJECT_DIR$/GlobalTv.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IMKit/IMKit.iml" filepath="$PROJECT_DIR$/IMKit/IMKit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IMLib/IMLib.iml" filepath="$PROJECT_DIR$/IMLib/IMLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/baselibs/baselibs.iml" filepath="$PROJECT_DIR$/baselibs/baselibs.iml" />
       <module fileurl="file://$PROJECT_DIR$/logiclibs/logiclibs.iml" filepath="$PROJECT_DIR$/logiclibs/logiclibs.iml" />

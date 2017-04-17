@@ -1,1 +1,1 @@
-include ':app', ':logiclibs', ':baselibs'
+include ':app', ':logiclibs', ':baselibs', ':IMKit', ':IMLib'
