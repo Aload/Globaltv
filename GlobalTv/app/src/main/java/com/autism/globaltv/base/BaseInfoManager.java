@@ -54,6 +54,7 @@ public class BaseInfoManager extends RongIMClient.ConnectCallback {
     private void init() {
         LogicApp.initLogicContext(mContext);
         LiveKit.init(mContext, "vnroth0kvfozo");
+        //初始化token 需要与后台链接 TODO
         LiveKit.connect(getChatToken(), this);
     }
 
