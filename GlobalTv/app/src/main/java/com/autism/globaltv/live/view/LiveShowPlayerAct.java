@@ -86,10 +86,11 @@ public class LiveShowPlayerAct extends BaseAct<LivePre> implements LivePlayerVie
         btnGift = (ImageView) bottomPanel.getView().findViewById(R.id.btn_gift);
         btnHeart = (ImageView) bottomPanel.getView().findViewById(R.id.btn_heart);
         heartLayout = (HeartLayout) findViewById(R.id.heart_layout);
-
+        findViewById(R.id.back_iv).setOnClickListener(this);
         mTvName = (TextView) findViewById(R.id.tv_user);
         mImgePlayer = (ImageView) findViewById(R.id.iv_user);
         mTvView = (TextView) findViewById(R.id.tv_viewer);
+        //用户头像
         RecyclerView mRvListView = (RecyclerView) findViewById(R.id.rv_view);
         mRvListView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         mRvListView.setAdapter(null);
@@ -124,13 +125,19 @@ public class LiveShowPlayerAct extends BaseAct<LivePre> implements LivePlayerVie
 
     @Override
     public void onEnterFailed(String msg) {
-
+        ToastUtils.showToast(this, msg);
     }
 
     @Override
     public void onClick(View v) {
         GiftMessage msg;
         int id = v.getId();
+        if (id == R.id.back_iv) {
+            mLivePlayer.release();
+            ViewUtils.left2RightOut(this);
+            finish();
+            return;
+        }
         //判断是否登陆,初始化用户信息,需要在init中同步融云用户信息 TODO
         if (!login) {
             ToastUtils.showToast(this, "请先登陆,谢谢~");
@@ -160,22 +167,23 @@ public class LiveShowPlayerAct extends BaseAct<LivePre> implements LivePlayerVie
 
     @Override
     public void onStartPlay() {
-
+        dissLoading();
     }
 
     @Override
     public void onStopPlay() {
-
+        showLoading();
     }
 
     @Override
     public void onErrorPlay() {
+        dissLoading();
 
     }
 
     @Override
     public void onReconnect() {
-
+        showLoading();
     }
 
     @Override

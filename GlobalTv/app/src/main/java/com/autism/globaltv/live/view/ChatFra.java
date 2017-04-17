@@ -23,11 +23,12 @@ import io.rong.message.TextMessage;
  * Author：i5 on 2017/4/11 09:46
  * Used:GlobalTv
  */
-public class ChatFra extends BaseFra<IPresenter> implements InputPanel.InputPanelListener, Handler.Callback {
+public class ChatFra extends BaseFra<IPresenter> implements InputPanel.InputPanelListener, Handler.Callback, View.OnClickListener {
 
     private Handler mHandler = new Handler(this);
     private ChatListAdapter mListAdapter;
     private boolean login;
+    private InputPanel inputPanel;
 
     @Override
     protected IPresenter getPresenter() {
@@ -39,9 +40,12 @@ public class ChatFra extends BaseFra<IPresenter> implements InputPanel.InputPane
         super.onInitFraView(mView);
         LiveKit.addEventHandler(mHandler);
         ChatListView mRvChat = (ChatListView) mView.findViewById(R.id.chat_msg);
+        View mContainer = mView.findViewById(R.id.rl_chat_container);
+        mContainer.setOnClickListener(this);
         mListAdapter = new ChatListAdapter();
         mRvChat.setAdapter(mListAdapter);
-        InputPanel inputPanel = (InputPanel) mView.findViewById(R.id.input_panel);
+
+        inputPanel = (InputPanel) mView.findViewById(R.id.input_panel);
         inputPanel.setPanelListener(this);
     }
 
@@ -53,7 +57,7 @@ public class ChatFra extends BaseFra<IPresenter> implements InputPanel.InputPane
     @Override
     public void onSendClick(String text) {
         if (!login) {
-            ToastUtils.showToast(getActivity(),"请先登陆,谢谢~");
+            ToastUtils.showToast(getActivity(), "请先登陆,谢谢~");
             return;
         }
         TextMessage content = TextMessage.obtain(text);
@@ -81,5 +85,10 @@ public class ChatFra extends BaseFra<IPresenter> implements InputPanel.InputPane
         }
         EventBusLogicUtils.postEvent(content);
         return false;
+    }
+
+    @Override
+    public void onClick(View v) {
+        inputPanel.onBackAction();
     }
 }

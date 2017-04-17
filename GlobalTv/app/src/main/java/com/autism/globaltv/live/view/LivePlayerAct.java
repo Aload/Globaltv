@@ -200,12 +200,12 @@ public class LivePlayerAct extends BaseAct<LivePre> implements LivePlayerView, I
 
     @Override
     public void onStopPlay() {
-
+        showLoading();
     }
 
     @Override
     public void onErrorPlay() {
-
+        showLoading();
     }
 
     @Override

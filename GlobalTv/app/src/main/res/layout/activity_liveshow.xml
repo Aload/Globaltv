@@ -37,6 +37,14 @@
         android:layout_alignParentStart="true"
         tools:layout="@layout/fragment_bottombar" />
 
+    <ImageView
+        android:id="@+id/back_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerInParent="true"
+        android:background="@drawable/btn_back_selector" />
+
     <com.autism.baselibs.view.chat.animation.HeartLayout
         android:id="@+id/heart_layout"
         android:layout_width="86dp"

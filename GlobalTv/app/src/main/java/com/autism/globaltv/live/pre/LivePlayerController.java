@@ -97,7 +97,9 @@ public class LivePlayerController implements SurfaceHolder.Callback, PLMediaPlay
      * 停止播放
      */
     public void setOnStopPlay() {
-        if (mMediaPlayer != null) mMediaPlayer.stop();
+        if (mMediaPlayer != null) {
+            mMediaPlayer.stop();
+        }
     }
 
     private void prepare() {
@@ -145,12 +147,19 @@ public class LivePlayerController implements SurfaceHolder.Callback, PLMediaPlay
      * 视频流大小变化
      *
      * @param plMediaPlayer
-     * @param i
-     * @param i1
+     * @param width
+     * @param height
      */
     @Override
-    public void onVideoSizeChanged(PLMediaPlayer plMediaPlayer, int i, int i1) {
-        LogUtil.d(TAG, i + " " + i1);
+    public void onVideoSizeChanged(PLMediaPlayer plMediaPlayer, int width, int height) {
+        LogUtil.d(TAG, width + " " + height);
+        if (width != 0 && height != 0) {
+            float ratioW = (float) width / (float) mSurfaceWidth;
+            float ratioH = (float) height / (float) mSurfaceHeight;
+            float ratio = Math.max(ratioW, ratioH);
+            width = (int) Math.ceil((float) width / ratio);
+            height = (int) Math.ceil((float) height / ratio);
+        }
     }
 
     /**

@@ -1,5 +1,6 @@
 package com.autism.baselibs.view.chat;
 
+import android.app.Activity;
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -8,6 +9,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,6 +21,7 @@ import com.autism.baselibs.R;
 public class InputPanel extends LinearLayout {
 
     private final static String TAG = "InputPanel";
+    private final Context mContext;
 
     private ViewGroup inputBar;
     private EditText textEditor;
@@ -34,6 +37,7 @@ public class InputPanel extends LinearLayout {
 
     public InputPanel(Context context, AttributeSet attrs) {
         super(context, attrs);
+        this.mContext = context;
         initView();
     }
 
