@@ -3,9 +3,7 @@ package com.autism.globaltv.live.view;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.graphics.Color;
 import android.support.v4.view.ViewPager;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
@@ -14,7 +12,6 @@ import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.autism.baselibs.view.glide.GlideUtils;
@@ -34,7 +31,11 @@ import com.autism.logiclibs.UiUtils;
 import com.orzangleli.xdanmuku.DanmuContainerView;
 import com.orzangleli.xdanmuku.DanmuConverter;
 
-import java.util.Random;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import io.rong.imlib.model.MessageContent;
+import io.rong.message.TextMessage;
 
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
@@ -57,6 +58,7 @@ public class LivePlayerAct extends BaseAct<LivePre> implements LivePlayerView, I
     private FrameLayout mControllerViewContent;
     private SurfaceView mSurface;
     private boolean isVertical = true;
+    private DanmuContainerView mDmView;
 
     @Override
     public void setLiveConfig() {
@@ -76,7 +78,8 @@ public class LivePlayerAct extends BaseAct<LivePre> implements LivePlayerView, I
         mUid = intent.getStringExtra(Config.ENTERUID);
         mControllerViewContent = (FrameLayout) findViewById(R.id.rl_controller_layout);
         mSurface = (SurfaceView) findViewById(R.id.sv_player);
-        DanmuContainerView mDmView = (DanmuContainerView) findViewById(R.id.dm_view);
+
+        mDmView = (DanmuContainerView) findViewById(R.id.dm_view);
         measure(mControllerViewContent, 0, 600);
         measure(mSurface, 0, 450);
         measure(mDmView, 0, 450);
@@ -234,7 +237,6 @@ public class LivePlayerAct extends BaseAct<LivePre> implements LivePlayerView, I
         }
     }
 
-
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
@@ -253,5 +255,15 @@ public class LivePlayerAct extends BaseAct<LivePre> implements LivePlayerView, I
                 break;
         }
         return super.onTouchEvent(event);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(MessageContent msgContent) {
+        //TODO 弹幕数据添加
+        TextMessage txtMsg = (TextMessage) msgContent;
+        DanmuEntity danmuEntity = new DanmuEntity();
+        danmuEntity.setMsg(txtMsg.getContent());
+        String extra = txtMsg.getExtra();
+        mDmView.addDanmu(danmuEntity);
     }
 }

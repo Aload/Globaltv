@@ -34,4 +34,13 @@ public class EventBusLogicUtils {
             mDefaultBus.unregister(mObj);
         }
     }
+
+    /**
+     * 参数传递
+     *
+     * @param mObj
+     */
+    public static void postEvent(Object mObj) {
+        if (null != mDefaultBus) mDefaultBus.post(mObj);
+    }
 }

@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.autism.baselibs.utils.ToastUtils;
 import com.autism.baselibs.view.chat.ChatListView;
 import com.autism.baselibs.view.chat.InputPanel;
 import com.autism.baselibs.view.chat.animation.HeartLayout;
@@ -131,7 +132,8 @@ public class LiveShowPlayerAct extends BaseAct<LivePre> implements LivePlayerVie
         GiftMessage msg;
         int id = v.getId();
         //判断是否登陆,初始化用户信息,需要在init中同步融云用户信息 TODO
-        if (login) {
+        if (!login) {
+            ToastUtils.showToast(this, "请先登陆,谢谢~");
             return;
         }
         switch (id) {
@@ -196,11 +198,5 @@ public class LiveShowPlayerAct extends BaseAct<LivePre> implements LivePlayerVie
         }
         chatListAdapter.notifyDataSetChanged();
         return false;
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
     }
 }
