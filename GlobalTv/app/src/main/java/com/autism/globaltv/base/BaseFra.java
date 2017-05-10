@@ -16,6 +16,9 @@ import com.autism.baselibs.view.refresh.container.MeituanFooter;
 import com.autism.baselibs.view.refresh.container.MeituanHeader;
 import com.autism.globaltv.R;
 import com.autism.logiclibs.UiUtils;
+import com.king.base.BaseFragment;
+
+import java.util.List;
 
 /**
  * Author：autism on 2017/4/1 11:26
@@ -133,7 +136,17 @@ public abstract class BaseFra<T extends IPresenter> extends Fragment implements 
             mViewTitleRight.setOnClickListener(listener);
         }
     }
+    public <T> void  toSetList(List<T> list, List<T> newList, boolean isMore){
 
+        if(list!=null && newList!=null){
+            synchronized (BaseFra.class){
+                if(!isMore){
+                    list.clear();
+                }
+                list.addAll(newList);
+            }
+        }
+    }
     /**
      * 是否显示分割线
      *

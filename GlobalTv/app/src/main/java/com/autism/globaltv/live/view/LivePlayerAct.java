@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.FrameLayout;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 
 import com.autism.baselibs.utils.NumUtils;
 import com.autism.baselibs.view.glide.GlideUtils;
+import com.autism.baselibs.view.refresh.utils.DensityUtil;
 import com.autism.baselibs.view.tablayout.FragmentPagerItem;
 import com.autism.baselibs.view.tablayout.FragmentPagerItemAdapter;
 import com.autism.baselibs.view.tablayout.FragmentPagerItems;
@@ -42,7 +44,7 @@ import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
 /**
- * Author：i5 on 2017/4/10 11:00
+ * Author：autism on 2017/4/10 11:00
  * Used:GlobalTv
  */
 public class LivePlayerAct extends BaseAct<LivePre> implements LivePlayerView, IPlayerLifeCircle, View.OnClickListener, View.OnTouchListener {
@@ -60,6 +62,8 @@ public class LivePlayerAct extends BaseAct<LivePre> implements LivePlayerView, I
     private SurfaceView mSurface;
     private boolean isVertical = true;
     private DanmuContainerView mDmView;
+    private View mTabContent;
+    private ViewPager mPager;
 
     @Override
     public void setLiveConfig() {
@@ -78,6 +82,8 @@ public class LivePlayerAct extends BaseAct<LivePre> implements LivePlayerView, I
         Intent intent = getIntent();
         mUid = intent.getStringExtra(Config.ENTERUID);
         mControllerViewContent = (FrameLayout) findViewById(R.id.rl_controller_layout);
+
+        mTabContent = findViewById(R.id.chat_content);
         mSurface = (SurfaceView) findViewById(R.id.sv_player);
 
         mDmView = (DanmuContainerView) findViewById(R.id.dm_view);
@@ -110,7 +116,8 @@ public class LivePlayerAct extends BaseAct<LivePre> implements LivePlayerView, I
         mFullScreen.setOnClickListener(this);
 
         SmartTabLayout smartTabLayout = (SmartTabLayout) findViewById(R.id.viewpagertab);
-        ViewPager mPager = (ViewPager) findViewById(R.id.vp_player);
+
+        mPager = (ViewPager) findViewById(R.id.vp_player);
         FragmentPagerItems pages = new FragmentPagerItems(this);
         pages.add(FragmentPagerItem.of(getString(R.string.chat), ChatFra.class));
         pages.add(FragmentPagerItem.of(getString(R.string.sort), SortPlayerFra.class));
@@ -243,6 +250,28 @@ public class LivePlayerAct extends BaseAct<LivePre> implements LivePlayerView, I
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         isVertical = newConfig.orientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+        updateSurface(isVertical);
+    }
+
+    private void updateSurface(boolean isVertical) {
+        if (isVertical) {
+            mTabContent.setVisibility(View.VISIBLE);
+            mPager.setVisibility(VISIBLE);
+        } else {
+            mTabContent.setVisibility(View.GONE);
+            mPager.setVisibility(View.GONE);
+        }
+        ViewGroup.LayoutParams lp = mSurface.getLayoutParams();
+        ViewGroup.LayoutParams layoutParams = mControllerView.getLayoutParams();
+        if (isVertical) {
+            layoutParams.height = DensityUtil.getDisplayMetrics(this).heightPixels;
+            lp.height = DensityUtil.getDisplayMetrics(this).heightPixels;
+        } else {
+            layoutParams.height = (int) (DensityUtil.getDisplayMetrics(this).widthPixels / 16.0f * 9.0f);
+            lp.height = (int) (DensityUtil.getDisplayMetrics(this).widthPixels / 16.0f * 9.0f);
+        }
+        mControllerView.setLayoutParams(layoutParams);
+        mSurface.setLayoutParams(lp);
     }
 
     @Override

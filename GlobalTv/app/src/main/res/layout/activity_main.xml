@@ -18,7 +18,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/divider_line"
+        android:background="@color/tab_bg"
+        android:checkedButton="@+id/rb_1"
         android:gravity="center"
         android:orientation="horizontal"
         android:weightSum="4">

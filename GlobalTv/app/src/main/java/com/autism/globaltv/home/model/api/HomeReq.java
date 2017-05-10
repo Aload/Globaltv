@@ -4,6 +4,7 @@ import com.autism.baselibs.http.RetrofitManager;
 import com.autism.baselibs.http.rx.RxUtil;
 import com.autism.globaltv.home.model.BannerEntity;
 import com.autism.globaltv.home.model.HomeEntity;
+import com.autism.globaltv.home.model.NormalEntity;
 import com.google.gson.JsonObject;
 
 import java.util.List;
@@ -50,6 +51,34 @@ public class HomeReq {
     public void getBannerData(Subscriber<JsonObject> subscriber) {
         mHomeApi.getAppStartInfo()
                 .compose(RxUtil.<JsonObject>ioMain())
+                .subscribe(subscriber);
+    }
+
+    public void getNormalData(Subscriber<List<NormalEntity>> subscriber) {
+        mHomeApi.getNormalList()
+                .compose(RxUtil.<List<NormalEntity>>ioMain())
+                .subscribe(subscriber);
+    }
+
+    /**
+     * 获取全部直播列表
+     *
+     * @param subscriber
+     */
+    public void getLiveListData(Subscriber<LiveListEntity> subscriber) {
+        mHomeApi.getLiveListResult()
+                .compose(RxUtil.<LiveListEntity>ioMain())
+                .subscribe(subscriber);
+    }
+
+    /**
+     * 获取普通的直播列表
+     *
+     * @param subscriber
+     */
+    public void getNormalLiveListData(Subscriber<LiveListEntity> subscriber, String flag) {
+        mHomeApi.getLiveListResultByCategories(flag)
+                .compose(RxUtil.<LiveListEntity>ioMain())
                 .subscribe(subscriber);
     }
 }

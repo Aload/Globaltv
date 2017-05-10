@@ -1,8 +1,6 @@
 package com.autism.globaltv.home.view;
 
 import android.support.annotation.IdRes;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.RadioButton;
@@ -11,10 +9,8 @@ import android.widget.RadioGroup;
 import com.autism.baselibs.view.viewpager.NoScollViewPager;
 import com.autism.globaltv.R;
 import com.autism.globaltv.base.BaseAct;
-import com.autism.globaltv.base.BaseFra;
 import com.autism.globaltv.base.IPresenter;
-import com.autism.globaltv.home.view.HomeFraPager;
-import com.autism.globaltv.home.view.SuperManager;
+import com.autism.globaltv.home.pre.HomeFraPager;
 
 /**
  * Author：Autism on 2017/4/1 15:09
@@ -44,11 +40,11 @@ public class HomeAct extends BaseAct implements RadioGroup.OnCheckedChangeListen
         mRbPlayer = (RadioButton) findViewById(R.id.rb_2);
         mRbColumn = (RadioButton) findViewById(R.id.rb_3);
         mRbMine = (RadioButton) findViewById(R.id.rb_4);
-        measure(rgGroup, 0, 140);
-        measure(mRbHome, 120, 120);
-        measure(mRbPlayer, 120, 120);
-        measure(mRbColumn, 120, 120);
-        measure(mRbMine, 120, 120);
+        measure(rgGroup, 0, 170);
+        measure(mRbHome, 140, 140);
+        measure(mRbPlayer, 140, 140);
+        measure(mRbColumn, 140, 140);
+        measure(mRbMine, 140, 140);
         rgGroup.check(R.id.rb_1);
         mPager.setCurrentItem(0, false);
         rgGroup.setOnCheckedChangeListener(this);
@@ -80,6 +76,7 @@ public class HomeAct extends BaseAct implements RadioGroup.OnCheckedChangeListen
                 break;
         }
     }
+
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

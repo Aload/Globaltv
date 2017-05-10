@@ -26,7 +26,6 @@ public class RecommendPre extends BasePresenter<RecommendView> {
     public void attachView() {
         onBannerData();
         Subscriber<JsonObject> subscriber = new RxSubscriber<JsonObject>(mActivity) {
-
             @Override
             public void _onNext(JsonObject mjson) {
                 super._onNext(mjson);

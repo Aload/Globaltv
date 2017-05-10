@@ -42,7 +42,7 @@ public class SuperManager {
         }
         switch (position) {
             case 0:
-                mFra = new RecommendFra();
+                mFra = new HomeFra();
                 break;
             case 1:
                 mFra = new ColumnFra();

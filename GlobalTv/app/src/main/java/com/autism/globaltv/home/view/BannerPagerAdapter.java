@@ -29,7 +29,7 @@ public class BannerPagerAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return null == banners ? 0 : banners.getAndroidfocus().size();
+        return null == banners ? 0 : banners.getAppfocus().size();
     }
 
     @Override
@@ -42,7 +42,7 @@ public class BannerPagerAdapter extends PagerAdapter {
         ImageView webImageView = new ImageView(mContext);
         ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT
                 , ViewGroup.LayoutParams.MATCH_PARENT);
-        BannerEntity.AndroidfocusBean androidfocusBean = banners.getAndroidfocus().get(position);
+        BannerEntity.AppfocusBean androidfocusBean = banners.getAppfocus().get(position);
         GlideUtils.loadUriNetImg(mContext, androidfocusBean.getThumb(), webImageView, R.mipmap.ic_default_cover);
         webImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         container.addView(webImageView, layoutParams);

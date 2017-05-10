@@ -3,9 +3,11 @@ package com.autism.globaltv.home.view;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewStub;
 
 import com.autism.baselibs.utils.LogUtil;
 import com.autism.baselibs.view.autopager.AutoScrollViewPager;
+import com.autism.baselibs.view.loading.LoadingView;
 import com.autism.globaltv.R;
 import com.autism.globaltv.base.BaseFra;
 import com.autism.globaltv.base.ViewUtils;
@@ -18,22 +20,27 @@ import com.autism.globaltv.live.view.LivePlayerAct;
 import com.autism.globaltv.live.view.LiveShowPlayerAct;
 
 /**
- * Author：i5 on 2017/4/7 14:51
+ * Author：autsim on 2017/4/7 14:51
  * Used:GlobalTv
  */
 public class RecommendFra extends BaseFra<RecommendPre> implements RecommendView, OnItemRecommonClickLisenter {
     private RecyclerView mRecycler;
     private AutoScrollViewPager mPager;
     private RecomRecyclerAdapter mRecyclerRecomAdapter;
+    private View mView;
+    private ViewStub mViewStub;
+    private LoadingView mLoading;
 
     @Override
     protected RecommendPre getPresenter() {
+        mLoading.setVisibility(View.VISIBLE);
         return new RecommendPre(getActivity(), this);
     }
 
     @Override
     protected void onInitFraView(View mView) {
         super.onInitFraView(mView);
+        this.mView = mView;
         mPager = (AutoScrollViewPager) mView.findViewById(R.id.auto_pager);
         mRecycler = (RecyclerView) mView.findViewById(R.id.auto_recycler);
         measure(mPager, 0, 350);
@@ -41,6 +48,7 @@ public class RecommendFra extends BaseFra<RecommendPre> implements RecommendView
         mRecyclerRecomAdapter = new RecomRecyclerAdapter();
         mRecycler.setAdapter(mRecyclerRecomAdapter);
         mRecyclerRecomAdapter.setRecommonClick(this);
+        mLoading = (LoadingView) mView.findViewById(R.id.loading);
     }
 
     @Override
@@ -50,12 +58,15 @@ public class RecommendFra extends BaseFra<RecommendPre> implements RecommendView
 
     @Override
     public void onRecommonSuccess(HomeEntity mData) {
+        mLoading.setVisibility(View.GONE);
         mRefresh.onFinishFreshAndLoad();
         mRecyclerRecomAdapter.notifyUi(mData);
     }
 
     @Override
     public void onBannerSuccess(BannerEntity mDate) {
+        mLoading.setVisibility(View.GONE);
+        if (mViewStub != null) mViewStub = null;
         BannerPagerAdapter bannerPagerAdapter = new BannerPagerAdapter(getActivity(), mDate);
         mPager.setAdapter(bannerPagerAdapter);
         mPager.startAutoScroll(3000);
@@ -77,7 +88,16 @@ public class RecommendFra extends BaseFra<RecommendPre> implements RecommendView
     @Override
     public void onRecommonFailed(String msg) {
         LogUtil.d(TAG, msg);
+        mLoading.setVisibility(View.GONE);
         mRefresh.onFinishFreshAndLoad();
+        mViewStub = (ViewStub) mView.findViewById(R.id.net_error);
+        mViewStub.inflate();
+        mViewStub.findViewById(R.id.img_net).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPresenter.attachView();
+            }
+        });
     }
 
     @Override

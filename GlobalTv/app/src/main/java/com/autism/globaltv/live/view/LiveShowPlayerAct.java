@@ -41,7 +41,7 @@ import io.rong.imlib.model.MessageContent;
 import io.rong.message.TextMessage;
 
 /**
- * Author：i5 on 2017/4/12 17:48
+ * Author：autism on 2017/4/12 17:48
  * Used:GlobalTv
  */
 public class LiveShowPlayerAct extends BaseAct<LivePre> implements LivePlayerView, View.OnClickListener, IPlayerLifeCircle, Handler.Callback {
@@ -179,7 +179,6 @@ public class LiveShowPlayerAct extends BaseAct<LivePre> implements LivePlayerVie
     @Override
     public void onErrorPlay() {
         dissLoading();
-
     }
 
     @Override
