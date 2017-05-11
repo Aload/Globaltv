@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -8,7 +9,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20.0dip">
+        android:layout_marginTop="20.0dip"
+        tools:ignore="ObsoleteLayoutParam">
 
         <Button
             android:id="@+id/layout_me_feedback"
@@ -16,7 +18,8 @@
             android:layout_height="25.0dip"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="10.0dip"
-            android:background="@mipmap/btn_nav_profile_suggest_logged_in" />
+            android:background="@mipmap/btn_nav_profile_suggest_logged_in"
+            tools:ignore="RtlHardcoded" />
 
         <Button
             android:id="@+id/layout_me_setting"
@@ -24,7 +27,8 @@
             android:layout_height="25.0dip"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10.0dip"
-            android:background="@mipmap/btn_nav_profile_settings" />
+            android:background="@mipmap/btn_nav_profile_settings"
+            tools:ignore="RtlHardcoded" />
     </RelativeLayout>
 
     <LinearLayout
@@ -37,7 +41,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="5dp">
+            android:layout_marginBottom="5dp"
+            tools:ignore="UselessParent">
 
             <TextView
                 android:id="@+id/tv_phonenumber"
@@ -47,7 +52,6 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="12dp"
                 android:gravity="center"
-                android:text="1364646377"
                 android:textColor="@color/white"
                 android:textSize="13sp"
                 android:visibility="visible" />
@@ -64,7 +68,8 @@
                 android:text="登录"
                 android:textColor="@color/white"
                 android:textSize="13sp"
-                android:visibility="invisible" />
+                android:visibility="invisible"
+                tools:ignore="HardcodedText" />
 
             <ImageView
                 android:id="@+id/profile_headimg"
@@ -73,7 +78,8 @@
                 android:layout_above="@+id/btn_login"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="12dp"
-                android:src="@mipmap/user_headimg" />
+                android:src="@mipmap/user_headimg"
+                tools:ignore="ContentDescription" />
         </RelativeLayout>
     </LinearLayout>
 

@@ -261,17 +261,6 @@ public class LivePlayerAct extends BaseAct<LivePre> implements LivePlayerView, I
             mTabContent.setVisibility(View.GONE);
             mPager.setVisibility(View.GONE);
         }
-        ViewGroup.LayoutParams lp = mSurface.getLayoutParams();
-        ViewGroup.LayoutParams layoutParams = mControllerView.getLayoutParams();
-        if (isVertical) {
-            layoutParams.height = DensityUtil.getDisplayMetrics(this).heightPixels;
-            lp.height = DensityUtil.getDisplayMetrics(this).heightPixels;
-        } else {
-            layoutParams.height = (int) (DensityUtil.getDisplayMetrics(this).widthPixels / 16.0f * 9.0f);
-            lp.height = (int) (DensityUtil.getDisplayMetrics(this).widthPixels / 16.0f * 9.0f);
-        }
-        mControllerView.setLayoutParams(layoutParams);
-        mSurface.setLayoutParams(lp);
     }
 
     @Override

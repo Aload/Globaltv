@@ -19,7 +19,6 @@ import com.autism.baselibs.R;
 
 public class InputPanel extends LinearLayout implements EmojiBoard.OnEmojiItemClickListener {
 
-    private final static String TAG = "InputPanel";
     private final Context mContext;
 
     private ViewGroup inputBar;
@@ -124,10 +123,5 @@ public class InputPanel extends LinearLayout implements EmojiBoard.OnEmojiItemCl
             return true;
         }
         return false;
-    }
-
-    private void hideKeyboard() {
-        InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(getWindowToken(), 0);
     }
 }

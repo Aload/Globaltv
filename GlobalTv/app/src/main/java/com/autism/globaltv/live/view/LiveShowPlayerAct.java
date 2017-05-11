@@ -140,16 +140,17 @@ public class LiveShowPlayerAct extends BaseAct<LivePre> implements LivePlayerVie
             return;
         }
         //判断是否登陆,初始化用户信息,需要在init中同步融云用户信息 TODO
-        if (!login) {
-            ToastUtils.showToast(this, "请先登陆,谢谢~");
-            return;
-        }
+
         switch (id) {
             case R.id.background:
                 bottomPanel.onBackAction();
                 break;
             case R.id.btn_gift:
                 msg = new GiftMessage("2", "送您一个礼物");
+                if (!login) {
+                    ToastUtils.showToast(this, "请先登陆,谢谢~");
+                    return;
+                }
                 LiveKit.sendMessage(msg);
                 break;
             case R.id.btn_heart:
@@ -160,6 +161,10 @@ public class LiveShowPlayerAct extends BaseAct<LivePre> implements LivePlayerVie
                         heartLayout.addHeart(rgb);
                     }
                 });
+                if (!login) {
+                    ToastUtils.showToast(this, "请先登陆,谢谢~");
+                    return;
+                }
                 msg = new GiftMessage("1", "为您点赞");
                 LiveKit.sendMessage(msg);
                 break;

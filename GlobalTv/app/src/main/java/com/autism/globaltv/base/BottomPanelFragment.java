@@ -9,8 +9,6 @@ import com.autism.globaltv.R;
 
 public class BottomPanelFragment extends BaseFra {
 
-    private static final String TAG = "BottomPanelFragment";
-
     private ViewGroup buttonPanel;
     private ImageView btnInput;
     private InputPanel inputPanel;
