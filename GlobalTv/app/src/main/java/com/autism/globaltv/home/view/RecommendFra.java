@@ -29,11 +29,9 @@ public class RecommendFra extends BaseFra<RecommendPre> implements RecommendView
     private RecomRecyclerAdapter mRecyclerRecomAdapter;
     private View mView;
     private ViewStub mViewStub;
-    private LoadingView mLoading;
 
     @Override
     protected RecommendPre getPresenter() {
-        mLoading.setVisibility(View.VISIBLE);
         return new RecommendPre(getActivity(), this);
     }
 
@@ -48,7 +46,6 @@ public class RecommendFra extends BaseFra<RecommendPre> implements RecommendView
         mRecyclerRecomAdapter = new RecomRecyclerAdapter();
         mRecycler.setAdapter(mRecyclerRecomAdapter);
         mRecyclerRecomAdapter.setRecommonClick(this);
-        mLoading = (LoadingView) mView.findViewById(R.id.loading);
     }
 
     @Override
@@ -58,14 +55,12 @@ public class RecommendFra extends BaseFra<RecommendPre> implements RecommendView
 
     @Override
     public void onRecommonSuccess(HomeEntity mData) {
-        mLoading.setVisibility(View.GONE);
         mRefresh.onFinishFreshAndLoad();
         mRecyclerRecomAdapter.notifyUi(mData);
     }
 
     @Override
     public void onBannerSuccess(BannerEntity mDate) {
-        mLoading.setVisibility(View.GONE);
         if (mViewStub != null) mViewStub = null;
         BannerPagerAdapter bannerPagerAdapter = new BannerPagerAdapter(getActivity(), mDate);
         mPager.setAdapter(bannerPagerAdapter);
@@ -88,7 +83,6 @@ public class RecommendFra extends BaseFra<RecommendPre> implements RecommendView
     @Override
     public void onRecommonFailed(String msg) {
         LogUtil.d(TAG, msg);
-        mLoading.setVisibility(View.GONE);
         mRefresh.onFinishFreshAndLoad();
         mViewStub = (ViewStub) mView.findViewById(R.id.net_error);
         mViewStub.inflate();
