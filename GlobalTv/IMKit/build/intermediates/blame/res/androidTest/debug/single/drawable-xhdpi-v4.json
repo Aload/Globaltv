@@ -352,12 +352,12 @@
         "source": "D:\\github_project\\GlobalTv\\IMKit\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\rc_unread_message_count.png"
     },
     {
-        "merged": "D:\\github_project\\GlobalTv\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\rc_cs_resolved_hover.png",
-        "source": "D:\\github_project\\GlobalTv\\IMKit\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\rc_cs_resolved_hover.png"
-    },
-    {
         "merged": "D:\\github_project\\GlobalTv\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\u1f623.png",
         "source": "D:\\github_project\\GlobalTv\\IMKit\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\u1f623.png"
+    },
+    {
+        "merged": "D:\\github_project\\GlobalTv\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\rc_cs_resolved_hover.png",
+        "source": "D:\\github_project\\GlobalTv\\IMKit\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\rc_cs_resolved_hover.png"
     },
     {
         "merged": "D:\\github_project\\GlobalTv\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\u1f52b.png",
