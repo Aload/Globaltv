@@ -11,6 +11,8 @@ import android.graphics.RectF;
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 
+import java.lang.ref.WeakReference;
+
 /**
  * Author：i5 on 2017/4/7 10:15
  * Used:GlobalTv
@@ -36,18 +38,18 @@ public class GlideRoundTransform extends BitmapTransformation {
     private static Bitmap roundCrop(BitmapPool pool, Bitmap source) {
         if (source == null) return null;
 
-        Bitmap result = pool.get(source.getWidth(), source.getHeight(), Bitmap.Config.ARGB_8888);
+        Bitmap result = pool.get(source.getWidth(), source.getHeight(), Bitmap.Config.RGB_565);
         if (result == null) {
-            result = Bitmap.createBitmap(source.getWidth(), source.getHeight(), Bitmap.Config.ARGB_8888);
+            result = Bitmap.createBitmap(source.getWidth(), source.getHeight(), Bitmap.Config.RGB_565);
         }
-
+        WeakReference<Bitmap> bitmapWeakReference = new WeakReference<Bitmap>(result);
         Canvas canvas = new Canvas(result);
         Paint paint = new Paint();
         paint.setShader(new BitmapShader(source, BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP));
         paint.setAntiAlias(true);
         RectF rectF = new RectF(0f, 0f, source.getWidth(), source.getHeight());
         canvas.drawRoundRect(rectF, radius, radius, paint);
-        return result;
+        return bitmapWeakReference.get();
     }
 
     @Override

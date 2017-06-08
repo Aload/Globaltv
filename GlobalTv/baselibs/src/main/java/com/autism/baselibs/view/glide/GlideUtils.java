@@ -26,9 +26,8 @@ public class GlideUtils {
     public static void loadUriNetImg(Context mContext, String uri, ImageView mView, int defalutRes) {
         Glide.with(mContext)
                 .load(uri)
-                .centerCrop()
                 .fitCenter()
-                .skipMemoryCache(false)
+                .skipMemoryCache(true)
                 .placeholder(defalutRes)
                 .into(mView);
     }
@@ -49,5 +48,9 @@ public class GlideUtils {
                 .centerCrop()
                 .fitCenter()
                 .into(mImg);
+    }
+
+    public static void realseImgRes(Context mContext) {
+        Glide.get(mContext).clearMemory();
     }
 }
