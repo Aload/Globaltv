@@ -52,4 +52,5 @@ dependencies {
     compile 'com.king.base:base:2.0'
     compile 'com.king.view:flutteringlayout:1.1.0'
     compile 'com.zhy:base-rvadapter:3.0.3'
+    compile 'com.kevin:wraprecyclerview:1.0.6'
 }

@@ -2,6 +2,7 @@ package com.autism.globaltv.home.view;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewStub;
 
@@ -18,13 +19,15 @@ import com.autism.globaltv.home.pre.RecomRecyclerAdapter;
 import com.autism.globaltv.home.pre.RecommendPre;
 import com.autism.globaltv.live.view.LivePlayerAct;
 import com.autism.globaltv.live.view.LiveShowPlayerAct;
+import com.kevin.wraprecyclerview.WrapAdapter;
+import com.kevin.wraprecyclerview.WrapRecyclerView;
 
 /**
  * Author：autsim on 2017/4/7 14:51
  * Used:GlobalTv
  */
 public class RecommendFra extends BaseFra<RecommendPre> implements RecommendView, OnItemRecommonClickLisenter {
-    private RecyclerView mRecycler;
+    private WrapRecyclerView mRecycler;
     private AutoScrollViewPager mPager;
     private RecomRecyclerAdapter mRecyclerRecomAdapter;
     private View mView;
@@ -39,12 +42,15 @@ public class RecommendFra extends BaseFra<RecommendPre> implements RecommendView
     protected void onInitFraView(View mView) {
         super.onInitFraView(mView);
         this.mView = mView;
-        mPager = (AutoScrollViewPager) mView.findViewById(R.id.auto_pager);
-        mRecycler = (RecyclerView) mView.findViewById(R.id.auto_recycler);
-        measure(mPager, 0, 350);
+        View mHeader = LayoutInflater.from(getActivity()).inflate(R.layout.header_banner_layout, null);
+        mPager = (AutoScrollViewPager) mHeader.findViewById(R.id.auto_pager);
+        mRecycler = (WrapRecyclerView) mView.findViewById(R.id.auto_recycler);
+        measure(mPager, 0, 500);
         mRecycler.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         mRecyclerRecomAdapter = new RecomRecyclerAdapter();
-        mRecycler.setAdapter(mRecyclerRecomAdapter);
+        WrapAdapter<RecomRecyclerAdapter> recomRecyclerHolderWrapAdapter = new WrapAdapter<>(mRecyclerRecomAdapter);
+        recomRecyclerHolderWrapAdapter.addHeaderView(mHeader);
+        mRecycler.setAdapter(recomRecyclerHolderWrapAdapter);
         mRecyclerRecomAdapter.setRecommonClick(this);
     }
 
