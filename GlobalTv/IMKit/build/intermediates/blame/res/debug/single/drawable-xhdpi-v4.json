@@ -244,12 +244,12 @@
         "source": "D:\\github_project\\GlobalTv\\IMKit\\src\\main\\res\\drawable-xhdpi\\rc_ext_indicator_hover.png"
     },
     {
-        "merged": "D:\\github_project\\GlobalTv\\IMKit\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\rc_send_voice_one.png",
-        "source": "D:\\github_project\\GlobalTv\\IMKit\\src\\main\\res\\drawable-xhdpi\\rc_send_voice_one.png"
-    },
-    {
         "merged": "D:\\github_project\\GlobalTv\\IMKit\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\u1f47f.png",
         "source": "D:\\github_project\\GlobalTv\\IMKit\\src\\main\\res\\drawable-xhdpi\\u1f47f.png"
+    },
+    {
+        "merged": "D:\\github_project\\GlobalTv\\IMKit\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\rc_send_voice_one.png",
+        "source": "D:\\github_project\\GlobalTv\\IMKit\\src\\main\\res\\drawable-xhdpi\\rc_send_voice_one.png"
     },
     {
         "merged": "D:\\github_project\\GlobalTv\\IMKit\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\rc_input_sub_menu_bg.9.png",

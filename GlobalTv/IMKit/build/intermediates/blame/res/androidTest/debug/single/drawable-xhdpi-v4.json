@@ -728,12 +728,12 @@
         "source": "D:\\github_project\\GlobalTv\\IMKit\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\rc_edit_text_background.9.png"
     },
     {
-        "merged": "D:\\github_project\\GlobalTv\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\u1f46a.png",
-        "source": "D:\\github_project\\GlobalTv\\IMKit\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\u1f46a.png"
-    },
-    {
         "merged": "D:\\github_project\\GlobalTv\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\rc_ext_plugin_toggle_hover.png",
         "source": "D:\\github_project\\GlobalTv\\IMKit\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\rc_ext_plugin_toggle_hover.png"
+    },
+    {
+        "merged": "D:\\github_project\\GlobalTv\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\u1f46a.png",
+        "source": "D:\\github_project\\GlobalTv\\IMKit\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\u1f46a.png"
     },
     {
         "merged": "D:\\github_project\\GlobalTv\\IMKit\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\u1f629.png",
